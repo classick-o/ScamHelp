@@ -1,0 +1,151 @@
+---
+const benefits = [
+  "Free & confidential assessment",
+  "No obligation consultation",
+  "Response within 24 hours",
+  "Expert case evaluation",
+];
+
+const scamTypes   = ["Investment Scam", "Loan Scam", "Romance Scam", "Cryptocurrency Scam", "Other"];
+const amountRanges = ["Below 5,000 EUR", "5,000-10,000 EUR", "10,000 EUR-30,000 EUR", "Above 30,000 EUR"];
+
+const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounded-xl text-white placeholder-white/25 focus:border-[#9ACF84]/50 focus:outline-none focus:ring-1 focus:ring-[#9ACF84]/20 transition-all duration-200";
+---
+
+<section id="consultation" class="py-16 md:py-20 bg-[#0a0a0f] relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#9ACF84]/10 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9ACF84]/[0.03] rounded-full blur-[200px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+
+      <!-- Left: info panel -->
+      <div class="reveal from-left lg:sticky lg:top-32">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
+          Get Started
+        </span>
+        <h2 class="text-white mb-6" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+          Get a free consultation to see if you are{" "}
+          <span class="text-[#9ACF84] italic">eligible for a refund</span>
+        </h2>
+        <p class="text-white/40 mb-10" style="font-size:15px;line-height:1.8">
+          Fill out the form to get a free, confidential consultation with our recovery
+          specialists. We'll assess your case and advise on the best course of action.
+        </p>
+
+        <div class="space-y-4">
+          {benefits.map((item, i) => (
+            <div class={`reveal from-left delay-${i + 2} flex items-center gap-3`}>
+              <!-- CheckCircle -->
+              <svg class="w-4 h-4 text-[#9ACF84] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-white/50" style="font-family:'Montserrat',sans-serif;font-size:13px">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal from-right delay-1">
+        <form id="consultation-form" class="p-8 md:p-10 rounded-xl bg-[#111119] border border-white/[0.06]">
+
+          <!-- Name + Email row -->
+          <div class="grid sm:grid-cols-3 gap-3 mb-3">
+            <input type="text"  name="firstName" required class={inputClasses} style="font-size:13px" placeholder="First Name*" />
+            <input type="text"  name="lastName"  required class={inputClasses} style="font-size:13px" placeholder="Last Name*" />
+            <input type="email" name="email"     required class={inputClasses} style="font-size:13px" placeholder="Email*" />
+          </div>
+
+          <!-- Phone + Country row -->
+          <div class="grid sm:grid-cols-2 gap-3 mb-5">
+            <input type="tel" name="phone" required class={inputClasses} style="font-size:13px" placeholder="CONTACT NO*" />
+            <select name="country" class={`${inputClasses} appearance-none`} style="font-size:13px">
+              <option value="">Country*</option>
+              <option>Netherlands</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Germany</option>
+              <option>France</option>
+              <option>Spain</option>
+              <option>Italy</option>
+              <option>Australia</option>
+              <option>Canada</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <!-- Scam type -->
+          <div class="mb-5">
+            <p class="text-white/50 mb-3" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500">
+              What type of scam did you fall victim to?*
+            </p>
+            <div class="grid sm:grid-cols-3 gap-2">
+              {scamTypes.map((type) => (
+                <label class="radio-card flex items-center gap-2 px-3 py-2.5 rounded-lg border border-white/8 bg-[#13131d] text-white/40 hover:border-white/15 cursor-pointer transition-all duration-150" style="font-size:12px">
+                  <input type="radio" name="scamType" value={type} class="sr-only" />
+                  <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+                  {type}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Amount lost -->
+          <div class="mb-7">
+            <p class="text-white/50 mb-3" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500">
+              Amount lost*
+            </p>
+            <div class="grid sm:grid-cols-2 gap-2">
+              {amountRanges.map((amount) => (
+                <label class="radio-card flex items-center gap-2 px-3 py-2.5 rounded-lg border border-white/8 bg-[#13131d] text-white/40 hover:border-white/15 cursor-pointer transition-all duration-150" style="font-size:12px">
+                  <input type="radio" name="amountLost" value={amount} class="sr-only" />
+                  <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+                  {amount}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-scale w-full flex items-center justify-center gap-2 px-8 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors duration-200"
+            style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600"
+          >
+            <!-- Send icon -->
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+            </svg>
+            Submit
+          </button>
+
+          <p class="text-white/20 text-center mt-4" style="font-size:11px">
+            Your information is confidential and secure.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Radio card styling via vanilla JS
+  document.querySelectorAll('.radio-card input[type="radio"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const name = (input as HTMLInputElement).name;
+      // Deselect all in same group
+      document.querySelectorAll(`.radio-card input[name="${name}"]`).forEach((other) => {
+        other.closest('.radio-card')?.classList.remove('selected');
+      });
+      // Select this one
+      input.closest('.radio-card')?.classList.add('selected');
+    });
+  });
+
+  // Form submission placeholder
+  document.getElementById('consultation-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>

@@ -1,0 +1,22 @@
+{
+  "name": "scamhelp",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "tailwind-merge": "3.2.0",
+    "tw-animate-css": "1.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.3.0",
+    "@tailwindcss/vite": "4.1.12",
+    "astro": "^5.7.10",
+    "tailwindcss": "4.1.12"
+  }
+}

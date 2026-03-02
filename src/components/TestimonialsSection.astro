@@ -1,0 +1,167 @@
+---
+const testimonials = [
+  {
+    name: "Nathan Goodwin",
+    initial: "N",
+    text: "Great company, very helpful. They do everything for you with a minimal amount of effort from the individual. They know their business and how to help others. This is a brief review but they got me my money back and literally coached me every step of the way. Wishing them all the best in the future.",
+  },
+  {
+    name: "Daniele Grifis Misantoni",
+    initial: "D",
+    text: "The service is amazing, I was able to get immediate help from an Agent who really cared about my case, giving me valuable info that will help me recover my money. Thanks again!",
+  },
+  {
+    name: "Anthony Rochfort",
+    initial: "A",
+    text: "I was highly sceptical about dealing with anyone after fraud occurred to me on 2 occasions. I was convinced by a great consultation and a solid list of partners. 3 months of hard work hand in hand ended up in retrieving almost 50K of my hard-earned money. Thanks a lot.",
+  },
+  {
+    name: "Verified Client",
+    initial: "V",
+    text: "I had applied to an online form via social media. It looked legitimate, and the representative who contacted me was quite helpful as well. Once I realized what had occurred, I researched online and came across Scam Help, which seemed the most reputable based on their expertise and being registered in the European Union. Their staff were approachable and understanding, but more importantly, so efficient. I have got back a considerable amount of funds already. They have my full recommendation.",
+  },
+];
+---
+
+<section id="testimonials" class="py-16 md:py-20 bg-[#fafaf9] relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#9ACF84]/4 rounded-full blur-[180px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="reveal text-center mb-16">
+      <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
+        Testimonials
+      </span>
+      <h2 class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+        Trusted by dozens{" "}
+        <span class="text-[#6BA055] italic">of scam victims</span>
+      </h2>
+    </div>
+
+    <!-- Cards: rendered with JS carousel -->
+    <div id="testimonials-grid" class="grid md:grid-cols-3 gap-5 mb-12">
+      <!-- Cards are injected by JS -->
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-center gap-3">
+      <button
+        id="testimonials-prev"
+        class="btn-scale w-10 h-10 rounded-xl bg-white border border-[#e8e8e8] flex items-center justify-center text-[#999] hover:text-[#6BA055] hover:border-[#9ACF84]/30 transition-all duration-200"
+        aria-label="Previous testimonials"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <div id="testimonials-dots" class="flex gap-1.5 mx-3"></div>
+
+      <button
+        id="testimonials-next"
+        class="btn-scale w-10 h-10 rounded-xl bg-white border border-[#e8e8e8] flex items-center justify-center text-[#999] hover:text-[#6BA055] hover:border-[#9ACF84]/30 transition-all duration-200"
+        aria-label="Next testimonials"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const testimonials = [
+    {
+      name: "Nathan Goodwin",
+      initial: "N",
+      text: "Great company, very helpful. They do everything for you with a minimal amount of effort from the individual. They know their business and how to help others. This is a brief review but they got me my money back and literally coached me every step of the way. Wishing them all the best in the future.",
+    },
+    {
+      name: "Daniele Grifis Misantoni",
+      initial: "D",
+      text: "The service is amazing, I was able to get immediate help from an Agent who really cared about my case, giving me valuable info that will help me recover my money. Thanks again!",
+    },
+    {
+      name: "Anthony Rochfort",
+      initial: "A",
+      text: "I was highly sceptical about dealing with anyone after fraud occurred to me on 2 occasions. I was convinced by a great consultation and a solid list of partners. 3 months of hard work hand in hand ended up in retrieving almost 50K of my hard-earned money. Thanks a lot.",
+    },
+    {
+      name: "Verified Client",
+      initial: "V",
+      text: "I had applied to an online form via social media. It looked legitimate, and the representative who contacted me was quite helpful. Once I realized what had occurred, I came across Scam Help — the most reputable based on their expertise and registration in the EU. Their staff were approachable and efficient. I have got back a considerable amount of funds already.",
+    },
+  ];
+
+  let current = 0;
+
+  const grid  = document.getElementById('testimonials-grid');
+  const dots  = document.getElementById('testimonials-dots');
+  const prev  = document.getElementById('testimonials-prev');
+  const next  = document.getElementById('testimonials-next');
+
+  const starsSVG = Array(5).fill(
+    '<svg style="display:inline-block;width:12px;height:12px;fill:#9ACF84;color:#9ACF84" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'
+  ).join('');
+
+  function renderCards() {
+    if (!grid) return;
+    const visible = [0, 1, 2].map((offset) => testimonials[(current + offset) % testimonials.length]);
+
+    grid.innerHTML = visible.map((t) => `
+      <div class="bg-white rounded-xl border border-[#e8e8e8] p-7 hover:shadow-lg hover:shadow-black/4 transition-shadow duration-300 flex flex-col">
+        <svg class="w-8 h-8 text-[#e2e2e2] mb-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="text-[#555] flex-1 mb-5" style="font-size:14px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden">
+          ${t.text}
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-[#f0f0f0]">
+          <div class="w-9 h-9 rounded-lg bg-[#9ACF84]/10 flex items-center justify-center">
+            <span class="text-[#6BA055]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700">${t.initial}</span>
+          </div>
+          <div>
+            <div class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">${t.name}</div>
+            <div class="flex gap-0.5 mt-0.5">${starsSVG}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderDots() {
+    if (!dots) return;
+    dots.innerHTML = testimonials.map((_, i) => `
+      <button
+        class="h-2 rounded-full transition-all duration-200 ${i === current ? 'bg-[#9ACF84] w-5' : 'bg-[#ddd] w-2'}"
+        data-index="${i}"
+        aria-label="Go to testimonial ${i + 1}"
+      ></button>
+    `).join('');
+
+    dots.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        current = parseInt(btn.getAttribute('data-index') || '0', 10);
+        renderCards();
+        renderDots();
+      });
+    });
+  }
+
+  prev?.addEventListener('click', () => {
+    current = (current - 1 + testimonials.length) % testimonials.length;
+    renderCards();
+    renderDots();
+  });
+
+  next?.addEventListener('click', () => {
+    current = (current + 1) % testimonials.length;
+    renderCards();
+    renderDots();
+  });
+
+  // Initial render
+  renderCards();
+  renderDots();
+</script>

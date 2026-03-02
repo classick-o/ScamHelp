@@ -1,0 +1,296 @@
+---
+import '../styles/index.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "ScamHelp - Fund Recovery Experts | Get Back What Is Rightfully Yours",
+  description = "ScamHelp helps victims of investment, crypto and romance scams recover their lost funds. Free confidential consultation. 750+ satisfied clients in 60+ countries. Netherlands-based fund recovery experts.",
+  canonical = "https://scamhelp.net/",
+  ogImage = "https://scamhelp.net/og-image.jpg",
+} = Astro.props;
+
+const siteUrl = "https://scamhelp.net";
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "ScamHelp",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+31-70-701-3260",
+        "contactType": "customer support",
+        "email": "support@scamhelp.net",
+        "areaServed": "Worldwide",
+        "availableLanguage": ["English", "Dutch", "Italian", "Spanish"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kalvermarkt 53",
+        "addressLocality": "Den Haag",
+        "postalCode": "2511 CB",
+        "addressCountry": "NL"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "ScamHelp",
+      "publisher": { "@id": `${siteUrl}/#organization` }
+    },
+    {
+      "@type": "Service",
+      "name": "Fund Recovery",
+      "provider": { "@id": `${siteUrl}/#organization` },
+      "description": "Professional fund recovery service for scam victims using strategic legal and financial channels.",
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "Service",
+      "name": "Crypto Tracing",
+      "provider": { "@id": `${siteUrl}/#organization` },
+      "description": "Advanced blockchain analytics to trace cryptocurrency transactions and identify fraudulent actors.",
+      "areaServed": "Worldwide"
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="fund recovery, scam recovery, crypto tracing, investment fraud recovery, scam victims, fraud recovery specialists, chargeback, dispute resolution" />
+    <meta name="author" content="ScamHelp" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ScamHelp" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <slot />
+
+    <!-- Global scroll reveal observer -->
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.from-left  { transform: translateX(-40px); }
+  .reveal.from-right { transform: translateX(40px);  }
+  .reveal.from-scale { transform: scale(0.94);       }
+  .reveal.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+
+  /* Staggered children */
+  .reveal.delay-1 { transition-delay: 0.1s; }
+  .reveal.delay-2 { transition-delay: 0.2s; }
+  .reveal.delay-3 { transition-delay: 0.3s; }
+  .reveal.delay-4 { transition-delay: 0.4s; }
+  .reveal.delay-5 { transition-delay: 0.5s; }
+  .reveal.delay-6 { transition-delay: 0.6s; }
+
+  /* ── CSS Keyframe Animations ── */
+  @keyframes float-y {
+    0%, 100% { transform: translateY(-6px); }
+    50%       { transform: translateY(6px);  }
+  }
+  @keyframes float-y-sm {
+    0%, 100% { transform: translateY(-4px); }
+    50%       { transform: translateY(4px);  }
+  }
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pulse-ring {
+    0%, 100% { transform: scale(1);    opacity: 0.3; }
+    50%       { transform: scale(1.03); opacity: 0.6; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0);   }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes bounce-y {
+    0%, 100% { transform: translateY(0);  }
+    50%       { transform: translateY(8px); }
+  }
+  @keyframes orb-float {
+    0%, 100% { transform: translateY(-20px); }
+    50%       { transform: translateY(20px);  }
+  }
+  @keyframes orb-float-rev {
+    0%, 100% { transform: translateY(15px);  }
+    50%       { transform: translateY(-15px); }
+  }
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50%       { opacity: 0.8; transform: scale(1.2); }
+  }
+  @keyframes draw-line {
+    0%   { stroke-dashoffset: 400; opacity: 0.8; }
+    50%  { stroke-dashoffset: 0;   opacity: 0.8; }
+    100% { stroke-dashoffset: -400; opacity: 0;  }
+  }
+  @keyframes icon-enter {
+    from { opacity: 0; transform: scale(0); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes icon-float {
+    0%, 100% { transform: translateY(-6px) rotate(5deg);  }
+    50%       { transform: translateY(6px)  rotate(-5deg); }
+  }
+
+  .animate-float      { animation: float-y 5s ease-in-out infinite; }
+  .animate-float-sm   { animation: float-y-sm 5s ease-in-out infinite; }
+  .animate-spin-slow  { animation: spin-slow 60s linear infinite; }
+  .animate-pulse-ring { animation: pulse-ring 4s ease-in-out infinite; }
+  .animate-marquee    { animation: marquee 25s linear infinite; }
+  .animate-bounce-y   { animation: bounce-y 2s ease-in-out infinite; }
+  .animate-orb        { animation: orb-float 8s ease-in-out infinite; }
+  .animate-orb-rev    { animation: orb-float-rev 10s ease-in-out infinite; }
+
+  /* ── Button hover effects ── */
+  .btn-scale {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-scale:hover  { transform: scale(1.02); }
+  .btn-scale:active { transform: scale(0.98); }
+
+  /* ── Navbar scroll transition ── */
+  #navbar {
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+  #navbar.scrolled {
+    background-color: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Mobile menu ── */
+  #mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+    opacity: 0;
+  }
+  #mobile-menu.open {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  /* ── Services dropdown ── */
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    width: 208px;
+    background: #161620;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    padding: 6px;
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+
+  /* ── Testimonials ── */
+  .testimonial-card {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* ── Form radio cards ── */
+  .radio-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .radio-card.selected {
+    border-color: rgba(154, 207, 132, 0.4);
+    background-color: rgba(154, 207, 132, 0.08);
+    color: #9ACF84;
+  }
+  .radio-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .radio-card.selected .radio-dot {
+    border-color: #9ACF84;
+  }
+  .radio-dot-inner {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #9ACF84;
+    display: none;
+  }
+  .radio-card.selected .radio-dot-inner { display: block; }
+</style>

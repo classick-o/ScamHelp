@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /d/Proiecte/ScamHelp/src/styles/*.css)",
+      "Bash(ls -la /d/Proiecte/ScamHelp/src/app/components/*.tsx)",
+      "Bash(d:/Proiecte/ScamHelp/package.json:*)",
+      "Bash(npm install)",
+      "Bash(npm run build)"
+    ]
+  }
+}

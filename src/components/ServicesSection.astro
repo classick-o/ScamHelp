@@ -1,0 +1,87 @@
+---
+const services = [
+  {
+    title: "Fund Recovery",
+    description: "Our specialized team works to trace and recover your lost funds through strategic legal and financial channels.",
+    features: ["Dispute Filing", "Bank Chargebacks", "Legal Proceedings"],
+    // Wallet icon
+    iconPath: "M21 4H3a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V5a1 1 0 00-1-1zM2 8h20m-7 4a2 2 0 100 4 2 2 0 000-4z",
+  },
+  {
+    title: "Crypto Tracing",
+    description: "Using advanced blockchain analytics, we trace cryptocurrency transactions to identify fraudulent actors.",
+    features: ["Blockchain Analysis", "Wallet Identification", "Transaction Mapping"],
+    // Search icon
+    iconPath: "M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z",
+  },
+  {
+    title: "Crypto Investigation",
+    description: "Deep-dive digital forensics to uncover fraud networks and gather evidence for legal proceedings.",
+    features: ["Digital Forensics", "Evidence Collection", "Expert Testimony"],
+    // ShieldCheck icon
+    iconPath: "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z",
+  },
+  {
+    title: "Dispute Resolution",
+    description: "Expert mediation and legal dispute resolution with financial institutions and regulatory bodies.",
+    features: ["Regulatory Complaints", "Mediation Support", "Legal Advocacy"],
+    // Scale icon
+    iconPath: "M3 6l9-4 9 4M3 6l9 4m-9-4v10l9 4m0-14l9 4m-9-4v14m9-14v10l-9 4",
+  },
+];
+---
+
+<section id="services" class="py-16 md:py-20 bg-white relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9ACF84]/4 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="reveal text-center mb-16">
+      <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
+        Our Services
+      </span>
+      <h2 class="text-[#0a0a0f] mb-5" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+        Comprehensive{" "}
+        <span class="text-[#6BA055] italic">Recovery Solutions</span>
+      </h2>
+      <p class="text-[#777] max-w-2xl mx-auto" style="font-size:15px;line-height:1.7">
+        From initial investigation to successful recovery, we provide end-to-end
+        support for scam victims worldwide.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid md:grid-cols-2 gap-5">
+      {services.map((service, i) => (
+        <div class={`reveal delay-${i + 1} group relative p-7 rounded-xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-xl hover:shadow-[#9ACF84]/5 transition-all duration-300 cursor-pointer`}>
+          <div class="flex items-start justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center group-hover:bg-[#9ACF84]/15 transition-colors duration-200">
+              <svg class="w-5 h-5 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d={service.iconPath} />
+              </svg>
+            </div>
+            <!-- ArrowUpRight with CSS rotation on hover -->
+            <svg class="w-5 h-5 text-[#ccc] group-hover:text-[#6BA055] transition-colors duration-200 -rotate-45 group-hover:rotate-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+
+          <h3 class="text-[#0a0a0f] mb-2" style="font-family:'Montserrat',sans-serif;font-size:19px;font-weight:600">
+            {service.title}
+          </h3>
+          <p class="text-[#777] mb-5" style="font-size:14px;line-height:1.65">
+            {service.description}
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            {service.features.map((feature) => (
+              <span class="px-3 py-1 text-[#6BA055] bg-[#9ACF84]/8 border border-[#9ACF84]/12 rounded-lg" style="font-size:11px;font-weight:500">
+                {feature}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

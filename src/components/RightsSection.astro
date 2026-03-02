@@ -1,0 +1,135 @@
+---
+const steps = [
+  {
+    title: "Documentation",
+    description: "Gather all relevant documents, such as transaction records and communications.",
+    // FileText icon path
+    iconPath: "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z",
+  },
+  {
+    title: "Case Analysis",
+    description: "Our anti fraud specialists analyze your case to identify the best legal approach.",
+    // BarChart3 icon path
+    iconPath: "M18 20V10M12 20V4M6 20v-6",
+  },
+  {
+    title: "Action Plan",
+    description: "We guide you through the process of disputing charges and contacting financial institutions or regulatory bodies.",
+    // Compass icon path
+    iconPath: "M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v2m0 16v2M2 12h2m16 0h2m-4.22-5.78l-1.42 1.42M7.64 16.36l-1.42 1.42m0-11.56l1.42 1.42M16.36 16.36l1.42 1.42M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+  },
+];
+---
+
+<section id="rights" class="py-16 md:py-20 bg-white relative overflow-hidden">
+  <!-- Green accent blob -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9ACF84]/4 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+
+      <!-- Text column -->
+      <div class="reveal from-left">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
+          Know Your Rights
+        </span>
+        <h2 class="text-[#0a0a0f] mb-6" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+          Understanding and Asserting Your{" "}
+          <span class="text-[#6BA055] italic">Legal Protection</span>
+        </h2>
+        <p class="text-[#555] mb-4" style="font-size:15px;line-height:1.8">
+          When confronted with unauthorized charges or deceitful schemes, the pathway to
+          recovery is governed by clear legal provisions designed to protect consumers.
+          At Scam Help, we don't just offer scam assistance—we empower you with knowledge and tools.
+        </p>
+        <h3 class="text-[#0a0a0f] mb-5 mt-8" style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:600">
+          Steps to Take After Identifying Fraud
+        </h3>
+
+        <div class="space-y-5">
+          {steps.map((step, i) => (
+            <div class={`reveal from-left delay-${i + 2} flex gap-4 group`}>
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#9ACF84]/10 flex items-center justify-center group-hover:bg-[#9ACF84]/20 transition-colors duration-200">
+                <svg class="w-[18px] h-[18px] text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={step.iconPath} />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-[#0a0a0f] mb-0.5" style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600">
+                  {step.title}
+                </h4>
+                <p class="text-[#777]" style="font-size:14px;line-height:1.6">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Image column -->
+      <div class="reveal from-right relative">
+        <div class="rounded-xl overflow-hidden shadow-2xl shadow-black/10">
+          <img
+            src="https://images.unsplash.com/photo-1758519288480-1489c17b1519?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwcHJvZmVzc2lvbmFsJTIwb2ZmaWNlfGVufDF8fHx8MTc3MjQ4Mzk2M3ww&ixlib=rb-4.1.0&q=80&w=1080"
+            alt="Legal protection documents"
+            class="w-full h-[520px] object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Floating card: bottom left -->
+        <div class="absolute -bottom-6 -left-6 md:left-6 bg-white border border-[#e8e8e8] rounded-xl p-5 shadow-xl shadow-black/8 max-w-[260px] z-10 animate-float-sm reveal delay-4">
+          <div class="flex items-center gap-2.5 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-[#9ACF84] flex items-center justify-center">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4" stroke="#0a0a0f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
+              Your Rights Are Protected
+            </span>
+          </div>
+          <p class="text-[#888]" style="font-size:12px;line-height:1.5">
+            EU & international consumer protection laws empower you to recover unauthorized charges.
+          </p>
+        </div>
+
+        <!-- Floating card: top right -->
+        <div class="absolute -top-5 -right-4 md:right-4 bg-white border border-[#e8e8e8] rounded-xl p-4 shadow-xl shadow-black/8 max-w-[230px] z-10 animate-float reveal delay-5" style="animation-direction:reverse">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <div class="w-8 h-8 rounded-lg bg-[#0a0a0f] flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+              Expert Legal Team
+            </span>
+          </div>
+          <p class="text-[#888]" style="font-size:11px;line-height:1.5">
+            Dedicated fraud recovery specialists with proven track records.
+          </p>
+        </div>
+
+        <!-- Floating card: middle right -->
+        <div class="absolute top-1/2 -translate-y-1/2 -right-8 md:-right-4 bg-white border border-[#e8e8e8] rounded-xl p-4 shadow-xl shadow-black/8 max-w-[210px] z-10 animate-float-sm reveal delay-6">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <div class="w-8 h-8 rounded-lg bg-[#6BA055]/10 flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M6 6V4h12v2M19 6l-1 14H6L5 6" />
+              </svg>
+            </div>
+            <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+              Full Compliance
+            </span>
+          </div>
+          <p class="text-[#888]" style="font-size:11px;line-height:1.5">
+            All actions taken within regulatory frameworks & legal standards.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
