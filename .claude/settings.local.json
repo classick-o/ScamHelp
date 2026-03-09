@@ -5,7 +5,11 @@
       "Bash(ls -la /d/Proiecte/ScamHelp/src/app/components/*.tsx)",
       "Bash(d:/Proiecte/ScamHelp/package.json:*)",
       "Bash(npm install)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(npm install three)",
+      "Bash(npm install -D @types/three)",
+      "Bash(node -e \"const p = require\\(''d:/Proiecte/ScamHelp/node_modules/three/package.json''\\); console.log\\(p.version\\)\")",
+      "Bash(node -e \"require.resolve\\(''three/addons/environments/RoomEnvironment.js''\\)\")"
     ]
   }
 }
