@@ -3,8 +3,8 @@ const steps = [
   {
     title: "Documentation",
     description: "Gather all relevant documents, such as transaction records and communications.",
-    // FileText icon path
-    iconPath: "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z",
+    // ClipboardList icon path
+    iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h.01M9 16h.01M12 12h3M9 12h.01M12 16h3",
   },
   {
     title: "Case Analysis",
@@ -49,8 +49,8 @@ const steps = [
         <div class="space-y-5">
           {steps.map((step, i) => (
             <div class={`reveal from-left delay-${i + 2} flex gap-4 group`}>
-              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#9ACF84]/10 flex items-center justify-center group-hover:bg-[#9ACF84]/20 transition-colors duration-200">
-                <svg class="w-[18px] h-[18px] text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center group-hover:bg-[#7BB968] transition-colors duration-200">
+                <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d={step.iconPath} />
                 </svg>
               </div>
@@ -69,7 +69,7 @@ const steps = [
 
       <!-- Image column -->
       <div class="reveal from-right relative" style="perspective:1200px;">
-        <div class="rounded-xl overflow-hidden" style="transform:rotateY(-8deg) rotateX(2deg);box-shadow:-24px 16px 60px rgba(0,0,0,0.18), -8px 6px 20px rgba(0,0,0,0.12);">
+        <div class="rounded-xl overflow-hidden" style="transform:rotateY(-10deg);box-shadow:-24px 16px 60px rgba(0,0,0,0.18), -8px 6px 20px rgba(0,0,0,0.12);">
           <img
             src="https://images.unsplash.com/photo-1758519288480-1489c17b1519?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwcHJvZmVzc2lvbmFsJTIwb2ZmaWNlfGVufDF8fHx8MTc3MjQ4Mzk2M3ww&ixlib=rb-4.1.0&q=80&w=1080"
             alt="Legal protection documents"
@@ -79,14 +79,14 @@ const steps = [
         </div>
 
         <!-- Floating card: bottom left -->
-        <div class="absolute -bottom-6 -left-6 md:left-6 z-10 reveal delay-4" style="perspective:800px;transform-style:preserve-3d;">
-          <div style="transform:rotateY(-8deg) rotateX(2deg);">
-            <div class="animate-float-sm">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-5 max-w-[260px]" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
+        <div class="absolute -bottom-6 -left-6 md:left-6 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+            <div style="animation:float-card-1 8s ease-in-out infinite;">
+            <div class="bg-white border border-[#e8e8e8] rounded-xl p-5 max-w-[260px] reveal delay-4" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
               <div class="flex items-center gap-2.5 mb-2">
-                <div class="w-8 h-8 rounded-lg bg-[#9ACF84] flex items-center justify-center">
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4" stroke="#0a0a0f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
@@ -102,13 +102,13 @@ const steps = [
         </div>
 
         <!-- Floating card: top right -->
-        <div class="absolute -top-5 -right-4 md:right-4 z-10 reveal delay-5" style="perspective:800px;transform-style:preserve-3d;">
-          <div style="transform:rotateY(-8deg) rotateX(2deg);">
-            <div class="animate-float" style="animation-direction:reverse;">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[230px]" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
+        <div class="absolute -top-5 -right-4 md:right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+            <div style="animation:float-card-2 9s ease-in-out infinite;">
+            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[230px] reveal delay-5" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
               <div class="flex items-center gap-2.5 mb-1.5">
-                <div class="w-8 h-8 rounded-lg bg-[#0a0a0f] flex items-center justify-center">
-                  <svg class="w-3.5 h-3.5 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                 </div>
@@ -125,14 +125,14 @@ const steps = [
         </div>
 
         <!-- Floating card: middle right -->
-        <div class="absolute top-1/2 -translate-y-1/2 -right-8 md:-right-4 z-10 reveal delay-6" style="perspective:800px;transform-style:preserve-3d;">
-          <div style="transform:rotateY(-8deg) rotateX(2deg);">
-            <div class="animate-float-sm">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[210px]" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
+        <div class="absolute top-[60%] -translate-y-1/2 -right-8 md:-right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+            <div style="animation:float-card-3 10s ease-in-out infinite;">
+            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[210px] reveal delay-6" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
               <div class="flex items-center gap-2.5 mb-1.5">
-                <div class="w-8 h-8 rounded-lg bg-[#6BA055]/10 flex items-center justify-center">
-                  <svg class="w-3.5 h-3.5 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M6 6V4h12v2M19 6l-1 14H6L5 6" />
+                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                   </svg>
                 </div>
                 <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
@@ -151,3 +151,9 @@ const steps = [
     </div>
   </div>
 </section>
+
+<style>
+  .floating-card-wrapper:hover .floating-card-rotate {
+    transform: rotateY(0deg) !important;
+  }
+</style>

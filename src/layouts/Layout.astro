@@ -130,6 +130,22 @@ const schemaOrg = {
       );
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
     </script>
+
+    <script>
+      import Lenis from 'lenis';
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    </script>
   </body>
 </html>
 
@@ -164,6 +180,27 @@ const schemaOrg = {
   @keyframes float-y-sm {
     0%, 100% { transform: translateY(-4px); }
     50%       { transform: translateY(4px);  }
+  }
+  @keyframes float-card-1 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(3px, -4px); }
+    50%  { transform: translate(-2px, 2px); }
+    75%  { transform: translate(2px, 4px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes float-card-2 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-2px, 3px); }
+    50%  { transform: translate(4px, -2px); }
+    75%  { transform: translate(-3px, -3px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes float-card-3 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(2px, 2px); }
+    50%  { transform: translate(-3px, -4px); }
+    75%  { transform: translate(4px, -1px); }
+    100% { transform: translate(0, 0); }
   }
   @keyframes spin-slow {
     to { transform: rotate(360deg); }
