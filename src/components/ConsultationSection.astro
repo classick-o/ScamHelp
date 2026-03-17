@@ -13,9 +13,22 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 ---
 
 <section id="consultation" class="py-16 md:py-20 bg-[#0a0a0f] relative overflow-hidden">
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#9ACF84]/10 to-transparent"></div>
-  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9ACF84]/[0.03] rounded-full blur-[200px] pointer-events-none"></div>
+  <!-- Background video — rotated 90deg left to landscape -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute inset-0 z-[0] w-full h-full object-cover pointer-events-none"
+  >
+    <source src="/form_section_video.mp4" type="video/mp4" />
+  </video>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:rgba(10,10,15,0.88);"></div>
+
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#9ACF84]/10 to-transparent z-[2]"></div>
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent z-[2]"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9ACF84]/[0.03] rounded-full blur-[200px] pointer-events-none z-[2]"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
