@@ -1,0 +1,97 @@
+---
+---
+
+<section class="py-16 md:py-20 bg-white relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-px bg-[#e8e8e8]"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Left: heading -->
+      <div class="reveal from-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#9ACF84]/10 border border-[#9ACF84]/20 mb-6">
+          <svg class="w-4 h-4 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-[#6BA055]" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Our Commitment</span>
+        </div>
+        <h2 class="text-[#0a0a0f] mb-5" style="font-family:'Montserrat',sans-serif;font-size:clamp(24px,3vw,38px);font-weight:600;line-height:1.15">
+          We Prioritise <span class="text-[#6BA055]">Sustainability</span>
+        </h2>
+        <p class="text-[#777]" style="font-size:15px;line-height:1.8">
+          At Scam Help, we believe in doing good beyond our clients. As part of our commitment to a greener future, we invest in environmental initiatives that offset our footprint.
+        </p>
+      </div>
+
+      <!-- Right: stats -->
+      <div class="reveal from-right delay-1 grid grid-cols-2 gap-4">
+
+        <div class="p-8 rounded-2xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-md transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-[#9ACF84]/10 flex items-center justify-center mx-auto mb-5">
+            <svg class="w-6 h-6 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+            </svg>
+          </div>
+          <div class="sus-counter text-[#6BA055] mb-1" data-target="1511" data-suffix=""
+            style="font-family:'Montserrat',sans-serif;font-size:44px;font-weight:700;line-height:1">
+            0
+          </div>
+          <p class="text-[#999] uppercase tracking-[0.12em]" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600">
+            Trees Planted
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-md transition-all duration-300 text-center">
+          <div class="w-12 h-12 rounded-full bg-[#9ACF84]/10 flex items-center justify-center mx-auto mb-5">
+            <svg class="w-6 h-6 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+          </div>
+          <div class="sus-counter text-[#6BA055] mb-1" data-target="5745" data-suffix="" data-decimal="true"
+            style="font-family:'Montserrat',sans-serif;font-size:44px;font-weight:700;line-height:1">
+            0
+          </div>
+          <p class="text-[#999] uppercase tracking-[0.12em] mb-1" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600">
+            KG of CO₂ Compensated
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function animateSusCounter(el: Element) {
+    const target   = parseInt(el.getAttribute('data-target') || '0', 10);
+    const isDecimal = el.getAttribute('data-decimal') === 'true';
+    const duration = 2000;
+    const start    = Date.now();
+
+    const tick = () => {
+      const elapsed  = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3);
+      const value    = eased * target;
+      el.textContent = isDecimal
+        ? (value / 100).toFixed(2)
+        : Math.floor(value).toLocaleString();
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const susObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateSusCounter(entry.target);
+          susObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  document.querySelectorAll('.sus-counter').forEach((el) => susObserver.observe(el));
+</script>
