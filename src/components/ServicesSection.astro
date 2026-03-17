@@ -4,15 +4,15 @@ const services = [
     title: "Fund Recovery",
     description: "Our specialized team works to trace and recover your lost funds through strategic legal and financial channels.",
     features: ["Dispute Filing", "Bank Chargebacks", "Legal Proceedings"],
-    // Wallet icon
-    iconPath: "M21 4H3a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V5a1 1 0 00-1-1zM2 8h20m-7 4a2 2 0 100 4 2 2 0 000-4z",
+    // Recover arrow icon
+    iconPath: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
   },
   {
     title: "Crypto Tracing",
     description: "Using advanced blockchain analytics, we trace cryptocurrency transactions to identify fraudulent actors.",
     features: ["Blockchain Analysis", "Wallet Identification", "Transaction Mapping"],
-    // Search icon
-    iconPath: "M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z",
+    // Activity/waveform icon
+    iconPath: "M22 12h-4l-3 9L9 3l-3 9H2",
   },
   {
     title: "Crypto Investigation",
@@ -53,27 +53,23 @@ const services = [
     <!-- Cards grid -->
     <div class="grid md:grid-cols-2 gap-5">
       {services.map((service, i) => (
-        <div class={`reveal delay-${i + 1} group relative p-7 rounded-xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-xl hover:shadow-[#9ACF84]/5 transition-all duration-300 cursor-pointer`}>
-          <div class="flex items-start justify-between mb-5">
-            <div class="w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center group-hover:bg-[#9ACF84]/15 transition-colors duration-200">
-              <svg class="w-5 h-5 text-[#6BA055]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d={service.iconPath} />
-              </svg>
-            </div>
-            <!-- ArrowUpRight with CSS rotation on hover -->
-            <svg class="w-5 h-5 text-[#ccc] group-hover:text-[#6BA055] transition-colors duration-200 -rotate-45 group-hover:rotate-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-            </svg>
-          </div>
+        <div class={`reveal delay-${i + 1} group relative p-7 rounded-xl border border-[#9ACF84]/40 bg-white hover:border-[#9ACF84]/70 hover:shadow-xl hover:shadow-[#9ACF84]/5 transition-all duration-300 cursor-pointer overflow-hidden`}>
+          <!-- Animated background icon -->
+          <svg class="card-icon-bg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d={service.iconPath} />
+          </svg>
+          <svg class="absolute top-5 right-5 z-10 w-5 h-5 text-[#ccc] group-hover:text-[#6BA055] transition-colors duration-200 -rotate-45 group-hover:rotate-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+          </svg>
 
-          <h3 class="text-[#0a0a0f] mb-2" style="font-family:'Montserrat',sans-serif;font-size:19px;font-weight:600">
+          <h3 class="relative z-10 text-[#0a0a0f] mb-2" style="font-family:'Montserrat',sans-serif;font-size:19px;font-weight:600">
             {service.title}
           </h3>
-          <p class="text-[#777] mb-5" style="font-size:14px;line-height:1.65">
+          <p class="relative z-10 text-[#777] mb-5" style="font-size:14px;line-height:1.65">
             {service.description}
           </p>
 
-          <div class="flex flex-wrap gap-2">
+          <div class="relative z-10 flex flex-wrap gap-2">
             {service.features.map((feature) => (
               <span class="px-3 py-1 text-[#6BA055] bg-[#9ACF84]/8 border border-[#9ACF84]/12 rounded-lg" style="font-size:11px;font-weight:500">
                 {feature}
@@ -85,3 +81,17 @@ const services = [
     </div>
   </div>
 </section>
+
+<style>
+  .card-icon-bg {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: calc(100% - 169px);
+    left: calc(100% - 169px);
+    stroke: #9ACF84;
+    opacity: 0.22;
+    filter: blur(0px);
+    pointer-events: none;
+  }
+</style>
