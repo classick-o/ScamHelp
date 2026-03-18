@@ -3,7 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://scamhelp.net',
+  site: 'https://classick-o.github.io',
+  base: '/ScamHelp',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
