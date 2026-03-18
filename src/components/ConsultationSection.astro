@@ -6,203 +6,131 @@ const benefits = [
   "Expert case evaluation",
 ];
 
-const scamTypes   = ["Investment Scam", "Loan Scam", "Romance Scam", "Cryptocurrency Scam", "Forex Trading Scam", "Other"];
-const amountRanges = ["Below 5,000 EUR", "5,000–10,000 EUR", "10,000–30,000 EUR", "Above 30,000 EUR"];
+const countries   = ["Netherlands","United Kingdom","United States","Germany","France","Spain","Italy","Australia","Canada","Other"];
+const scamTypes   = ["Investment Scam","Loan Scam","Romance Scam","Cryptocurrency Scam","Forex Trading Scam","Binary Options Scam","Other"];
+const amounts     = ["Below 5,000 EUR","5,000–10,000 EUR","10,000–30,000 EUR","Above 30,000 EUR"];
 
 const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounded-xl text-white placeholder-white/25 focus:border-[#9ACF84]/50 focus:outline-none focus:ring-1 focus:ring-[#9ACF84]/20 transition-all duration-200";
 ---
 
-<section id="consultation" class="bg-[#0a0a0f] relative overflow-hidden" style="display:flex;align-items:center;">
-  <video autoplay muted loop playsinline class="absolute inset-0 z-[0] w-full h-full object-cover pointer-events-none">
-    <source src="/form_section_video.mp4" type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:rgba(10,10,15,0.88);"></div>
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#9ACF84]/10 to-transparent z-[2]"></div>
-  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent z-[2]"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9ACF84]/[0.03] rounded-full blur-[200px] pointer-events-none z-[2]"></div>
+<section id="consultation" class="bg-[#0a0a0f] relative py-16 md:py-20">
+  <!-- Decorative layer (clipped separately) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <video autoplay muted loop playsinline class="absolute inset-0 z-[0] w-full h-full object-cover">
+      <source src="/form_section_video.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 z-[1]" style="background:rgba(10,10,15,0.88);"></div>
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#9ACF84]/10 to-transparent z-[2]"></div>
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent z-[2]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9ACF84]/[0.03] rounded-full blur-[200px] z-[2]"></div>
+  </div>
 
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-16">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Left: info panel -->
       <div class="reveal from-left">
-        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-3 block" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600">
           Get Started
         </span>
-        <h2 class="text-white mb-6" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+        <h2 class="text-white mb-3" style="font-family:'Montserrat',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:600;line-height:1.2">
           Get a free consultation to see if you are{" "}
           <span class="text-[#9ACF84]">eligible for a refund</span>
         </h2>
-        <p class="text-white/40 mb-10" style="font-size:15px;line-height:1.8">
+        <p class="text-white/40 mb-6" style="font-size:13px;line-height:1.7">
           Fill out the form to get a free, confidential consultation with our recovery
           specialists. We'll assess your case and advise on the best course of action.
         </p>
-        <div class="space-y-4">
+        <div class="space-y-2.5">
           {benefits.map((item, i) => (
-            <div class={`reveal from-left delay-${i + 2} flex items-center gap-3`}>
-              <svg class="w-4 h-4 text-[#9ACF84] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <div class={`reveal from-left delay-${i + 2} flex items-center gap-2.5`}>
+              <svg class="w-3.5 h-3.5 text-[#9ACF84] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="text-white/50" style="font-family:'Montserrat',sans-serif;font-size:13px">{item}</span>
+              <span class="text-white/50" style="font-family:'Montserrat',sans-serif;font-size:12px">{item}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Right: Multi-step Form -->
+      <!-- Right: Form -->
       <div class="reveal from-right delay-1">
-        <div id="consultation-form" class="p-8 md:p-10 rounded-xl bg-[#111119] border border-white/[0.06]" style="height:530px;display:flex;flex-direction:column;justify-content:space-between;">
+        <form id="consultation-form" class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
 
-          <!-- Step indicator -->
-          <div class="flex items-center gap-0">
-            {[1,2,3].map((n) => (
-              <>
-                <div class="step-indicator flex items-center gap-2" data-step={n}>
-                  <div class="step-circle w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                    style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700">
-                    {n}
-                  </div>
-                  <span class="step-label hidden sm:block transition-colors duration-300"
-                    style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">
-                    {n === 1 ? "Your Info" : n === 2 ? "Your Case" : "Review"}
-                  </span>
-                </div>
-                {n < 3 && (
-                  <div class="step-line flex-1 h-px mx-3 transition-colors duration-300"></div>
-                )}
-              </>
-            ))}
+          <!-- Row 1: Name -->
+          <div class="grid grid-cols-2 gap-3">
+            <input id="f-firstName" type="text" name="firstName" required class={inputClasses} style="font-size:13px" placeholder="First Name*" />
+            <input id="f-lastName"  type="text" name="lastName"  required class={inputClasses} style="font-size:13px" placeholder="Last Name*" />
           </div>
 
-          <!-- Fixed-height content area -->
-          <div style="height:300px;overflow:hidden;position:relative;">
+          <!-- Row 2: Email -->
+          <input id="f-email" type="email" name="email" required class={inputClasses} style="font-size:13px" placeholder="Email Address*" />
 
-            <!-- STEP 1: Personal Info -->
-            <div id="step-1" class="form-step absolute inset-0">
-              <p class="text-white/30 mb-4" style="font-family:'Montserrat',sans-serif;font-size:12px">
-                Step 1 of 3 — Tell us about yourself
-              </p>
-              <div class="grid sm:grid-cols-2 gap-3 mb-3">
-                <input id="f-firstName" type="text" name="firstName" required class={inputClasses} style="font-size:13px" placeholder="First Name*" />
-                <input id="f-lastName"  type="text" name="lastName"  required class={inputClasses} style="font-size:13px" placeholder="Last Name*" />
-              </div>
-              <div class="mb-3">
-                <input id="f-email" type="email" name="email" required class={inputClasses} style="font-size:13px" placeholder="Email Address*" />
-              </div>
-              <div class="grid sm:grid-cols-2 gap-3">
-                <input id="f-phone" type="tel" name="phone" required class={inputClasses} style="font-size:13px" placeholder="Phone Number*" />
-                <select id="f-country" name="country" class={`${inputClasses} appearance-none`} style="font-size:13px">
-                  <option value="">Country*</option>
-                  <option>Netherlands</option>
-                  <option>United Kingdom</option>
-                  <option>United States</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Spain</option>
-                  <option>Italy</option>
-                  <option>Australia</option>
-                  <option>Canada</option>
-                  <option>Other</option>
-                </select>
-              </div>
+          <!-- Row 3: Phone + Country -->
+          <div class="grid grid-cols-2 gap-3">
+            <input id="f-phone" type="tel" name="phone" required class={inputClasses} style="font-size:13px" placeholder="Phone Number*" />
+            <!-- Country dropdown -->
+            <div class="cselect" data-name="country">
+              <input type="hidden" name="country" class="cselect-value" />
+              <button type="button" class="cselect-trigger">
+                <span class="cselect-label">Country*</span>
+                <svg class="cselect-arrow w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul class="cselect-list">
+                {countries.map((c) => <li class="cselect-option" data-value={c}>{c}</li>)}
+              </ul>
             </div>
-
-            <!-- STEP 2: Case Details -->
-            <div id="step-2" class="form-step absolute inset-0 hidden">
-              <p class="text-white/30 mb-4" style="font-family:'Montserrat',sans-serif;font-size:12px">
-                Step 2 of 3 — Tell us about your case
-              </p>
-              <p class="text-white/50 mb-2" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500">
-                What type of scam did you fall victim to?*
-              </p>
-              <div class="grid sm:grid-cols-3 gap-2 mb-4">
-                {scamTypes.map((type) => (
-                  <label class="radio-card flex items-center gap-2 px-3 py-2.5 rounded-lg border border-white/8 bg-[#13131d] text-white/40 hover:border-white/15 cursor-pointer transition-all duration-150" style="font-size:12px">
-                    <input type="radio" name="scamType" value={type} class="sr-only" />
-                    <div class="radio-dot"><div class="radio-dot-inner"></div></div>
-                    {type}
-                  </label>
-                ))}
-              </div>
-              <p class="text-white/50 mb-2" style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500">
-                Amount lost*
-              </p>
-              <div class="grid sm:grid-cols-2 gap-2">
-                {amountRanges.map((amount) => (
-                  <label class="radio-card flex items-center gap-2 px-3 py-2.5 rounded-lg border border-white/8 bg-[#13131d] text-white/40 hover:border-white/15 cursor-pointer transition-all duration-150" style="font-size:12px">
-                    <input type="radio" name="amountLost" value={amount} class="sr-only" />
-                    <div class="radio-dot"><div class="radio-dot-inner"></div></div>
-                    {amount}
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <!-- STEP 3: Review -->
-            <div id="step-3" class="form-step absolute inset-0 hidden">
-              <p class="text-white/30 mb-4" style="font-family:'Montserrat',sans-serif;font-size:12px">
-                Step 3 of 3 — Review your information
-              </p>
-              <div class="space-y-2">
-                <div class="rounded-xl border border-white/6 bg-[#13131d] p-4">
-                  <p class="text-[#9ACF84] mb-3" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">Personal Info</p>
-                  <div class="grid grid-cols-2 gap-x-6 gap-y-2">
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Full Name</p>
-                      <p id="r-name" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Email</p>
-                      <p id="r-email" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Phone</p>
-                      <p id="r-phone" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Country</p>
-                      <p id="r-country" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="rounded-xl border border-white/6 bg-[#13131d] p-4">
-                  <p class="text-[#9ACF84] mb-3" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">Case Details</p>
-                  <div class="grid grid-cols-2 gap-x-6 gap-y-2">
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Scam Type</p>
-                      <p id="r-scamType" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                    <div>
-                      <p class="text-white/25" style="font-size:11px">Amount Lost</p>
-                      <p id="r-amount" class="text-white/70" style="font-size:13px;font-weight:500">—</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- end content area -->
-
-          <!-- Shared action bar — always at bottom -->
-          <div class="flex gap-3">
-            <button id="btn-back" type="button" class="hidden flex-1 px-6 py-3.5 rounded-xl border border-white/10 text-white/40 hover:border-white/20 hover:text-white/60 transition-all duration-200"
-              style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500">
-              Back
-            </button>
-            <button id="btn-next" type="button" class="flex-[2] flex items-center justify-center gap-2 px-8 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors duration-200 btn-scale"
-              style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
-              Continue
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
           </div>
 
-          <p class="text-white/20 text-center mt-4" style="font-size:11px">
+          <!-- Row 4: Scam type + Amount -->
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Scam type dropdown -->
+            <div class="cselect" data-name="scamType">
+              <input type="hidden" name="scamType" class="cselect-value" />
+              <button type="button" class="cselect-trigger">
+                <span class="cselect-label">Type of scam*</span>
+                <svg class="cselect-arrow w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul class="cselect-list">
+                {scamTypes.map((s) => <li class="cselect-option" data-value={s}>{s}</li>)}
+              </ul>
+            </div>
+            <!-- Amount dropdown -->
+            <div class="cselect" data-name="amountLost">
+              <input type="hidden" name="amountLost" class="cselect-value" />
+              <button type="button" class="cselect-trigger">
+                <span class="cselect-label">Amount lost*</span>
+                <svg class="cselect-arrow w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul class="cselect-list">
+                {amounts.map((a) => <li class="cselect-option" data-value={a}>{a}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn-scale w-full flex items-center justify-center gap-2 px-8 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors duration-200 mt-1"
+            style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+            </svg>
+            Submit
+          </button>
+
+          <p class="text-white/20 text-center" style="font-size:11px">
             Your information is confidential and secure.
           </p>
 
-        </div>
+        </form>
       </div>
 
     </div>
@@ -210,146 +138,143 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 </section>
 
 <script>
-  let currentStep = 1;
+  // Custom select logic
+  document.querySelectorAll('.cselect').forEach((sel) => {
+    const trigger = sel.querySelector('.cselect-trigger') as HTMLElement;
+    const list    = sel.querySelector('.cselect-list')    as HTMLElement;
+    const label   = sel.querySelector('.cselect-label')   as HTMLElement;
+    const hidden  = sel.querySelector('.cselect-value')   as HTMLInputElement;
+    const arrow   = sel.querySelector('.cselect-arrow')   as HTMLElement;
 
-  const btnBack = document.getElementById('btn-back') as HTMLButtonElement;
-  const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
+    list.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      list.scrollTop += e.deltaY;
+    }, { passive: false });
 
-  function updateStepUI() {
-    // Show/hide step content
-    for (let i = 1; i <= 3; i++) {
-      const el = document.getElementById(`step-${i}`);
-      if (el) el.classList.toggle('hidden', i !== currentStep);
-    }
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = sel.classList.contains('open');
+      document.querySelectorAll('.cselect.open').forEach((s) => s.classList.remove('open'));
+      if (!isOpen) sel.classList.add('open');
+    });
 
-    // Back button: hidden on step 1
-    btnBack.classList.toggle('hidden', currentStep === 1);
-    btnBack.classList.toggle('flex', currentStep > 1);
 
-    // Next button label/icon
-    if (currentStep === 3) {
-      btnNext.innerHTML = `
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-        </svg>
-        Submit`;
-    } else {
-      btnNext.innerHTML = `Continue
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>`;
-    }
+    sel.querySelectorAll('.cselect-option').forEach((opt) => {
+      opt.addEventListener('click', () => {
+        const val = (opt as HTMLElement).dataset.value || '';
+        hidden.value = val;
+        label.textContent = val;
+        label.style.color = 'rgba(255,255,255,0.85)';
+        sel.querySelectorAll('.cselect-option').forEach((o) => o.classList.remove('active'));
+        opt.classList.add('active');
+        sel.classList.remove('open');
+      });
+    });
+  });
 
-    // Step indicators
-    document.querySelectorAll('.step-indicator').forEach((el) => {
-      const n = parseInt((el as HTMLElement).dataset.step || '0');
-      const circle = el.querySelector('.step-circle') as HTMLElement;
-      const label  = el.querySelector('.step-label')  as HTMLElement;
-
-      if (n < currentStep) {
-        circle.style.cssText = 'background:#9ACF84;color:#0a0a0f;';
-        circle.innerHTML = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
-        if (label) label.style.color = 'rgba(154,207,132,0.7)';
-      } else if (n === currentStep) {
-        circle.style.cssText = 'background:#9ACF84;color:#0a0a0f;';
-        circle.textContent = String(n);
-        if (label) label.style.color = '#9ACF84';
-      } else {
-        circle.style.cssText = 'background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.08);';
-        circle.textContent = String(n);
-        if (label) label.style.color = 'rgba(255,255,255,0.2)';
+  // Close on outside click — only if target is outside the dropdown
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.cselect.open').forEach((s) => {
+      if (!s.contains(e.target as Node)) {
+        s.classList.remove('open');
       }
     });
-
-    // Connector lines
-    document.querySelectorAll('.step-line').forEach((el, idx) => {
-      (el as HTMLElement).style.background = idx + 1 < currentStep
-        ? '#9ACF84' : 'rgba(255,255,255,0.08)';
-    });
-  }
-
-  function populateReview() {
-    const firstName = (document.getElementById('f-firstName') as HTMLInputElement)?.value || '—';
-    const lastName  = (document.getElementById('f-lastName')  as HTMLInputElement)?.value || '—';
-    const email     = (document.getElementById('f-email')     as HTMLInputElement)?.value || '—';
-    const phone     = (document.getElementById('f-phone')     as HTMLInputElement)?.value || '—';
-    const country   = (document.getElementById('f-country')   as HTMLSelectElement)?.value || '—';
-    const scamType  = (document.querySelector('input[name="scamType"]:checked')  as HTMLInputElement)?.value || '—';
-    const amount    = (document.querySelector('input[name="amountLost"]:checked') as HTMLInputElement)?.value || '—';
-
-    (document.getElementById('r-name')     as HTMLElement).textContent = `${firstName} ${lastName}`;
-    (document.getElementById('r-email')    as HTMLElement).textContent = email;
-    (document.getElementById('r-phone')    as HTMLElement).textContent = phone;
-    (document.getElementById('r-country')  as HTMLElement).textContent = country;
-    (document.getElementById('r-scamType') as HTMLElement).textContent = scamType;
-    (document.getElementById('r-amount')   as HTMLElement).textContent = amount;
-  }
-
-  btnNext.addEventListener('click', () => {
-    if (currentStep === 3) {
-      const formData = {
-        firstName: (document.getElementById('f-firstName') as HTMLInputElement)?.value,
-        lastName:  (document.getElementById('f-lastName')  as HTMLInputElement)?.value,
-        email:     (document.getElementById('f-email')     as HTMLInputElement)?.value,
-        phone:     (document.getElementById('f-phone')     as HTMLInputElement)?.value,
-        country:   (document.getElementById('f-country')   as HTMLSelectElement)?.value,
-        scamType:  (document.querySelector('input[name="scamType"]:checked')  as HTMLInputElement)?.value,
-        amountLost:(document.querySelector('input[name="amountLost"]:checked') as HTMLInputElement)?.value,
-      };
-      console.log('Form submission object:', formData);
-      return;
-    }
-    if (currentStep === 2) populateReview();
-    currentStep = Math.min(currentStep + 1, 3);
-    updateStepUI();
   });
 
-  btnBack.addEventListener('click', () => {
-    currentStep = Math.max(currentStep - 1, 1);
-    updateStepUI();
+  // Form submit
+  document.getElementById('consultation-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = {
+      firstName: (document.getElementById('f-firstName') as HTMLInputElement)?.value,
+      lastName:  (document.getElementById('f-lastName')  as HTMLInputElement)?.value,
+      email:     (document.getElementById('f-email')     as HTMLInputElement)?.value,
+      phone:     (document.getElementById('f-phone')     as HTMLInputElement)?.value,
+      country:   (document.querySelector('[name="country"].cselect-value')   as HTMLInputElement)?.value,
+      scamType:  (document.querySelector('[name="scamType"].cselect-value')  as HTMLInputElement)?.value,
+      amountLost:(document.querySelector('[name="amountLost"].cselect-value') as HTMLInputElement)?.value,
+    };
+    console.log('Form submission object:', formData);
   });
-
-  // Radio card styling
-  document.querySelectorAll('.radio-card input[type="radio"]').forEach((input) => {
-    input.addEventListener('change', () => {
-      const name = (input as HTMLInputElement).name;
-      document.querySelectorAll(`.radio-card input[name="${name}"]`).forEach((other) => {
-        other.closest('.radio-card')?.classList.remove('selected');
-      });
-      input.closest('.radio-card')?.classList.add('selected');
-    });
-  });
-
-  updateStepUI();
 </script>
 
 <style>
-  .radio-card.selected {
-    border-color: rgba(154, 207, 132, 0.4);
-    background: rgba(154, 207, 132, 0.06);
-    color: rgba(255,255,255,0.8);
+  /* Custom select */
+  .cselect {
+    position: relative;
   }
-  .radio-dot {
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.2);
+  .cselect-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #13131d;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-align: left;
+  }
+  .cselect-trigger:hover,
+  .cselect.open .cselect-trigger {
+    border-color: rgba(154,207,132,0.5);
+  }
+  .cselect-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cselect-arrow {
+    color: rgba(255,255,255,0.25);
     flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.15s;
+    transition: transform 0.2s ease;
   }
-  .radio-dot-inner {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #9ACF84;
-    opacity: 0;
-    transition: opacity 0.15s;
+  .cselect.open .cselect-arrow {
+    transform: rotate(180deg);
   }
-  .radio-card.selected .radio-dot { border-color: #9ACF84; }
-  .radio-card.selected .radio-dot-inner { opacity: 1; }
 
-  .form-step { animation: step-in 0.25s ease both; }
-  @keyframes step-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .cselect-list {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #1a1a28;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    max-height: 190px;
+    overflow-y: scroll;
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+  }
+  .cselect.open .cselect-list {
+    display: block;
+  }
+  .cselect-option {
+    padding: 9px 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+  }
+  .cselect-list::-webkit-scrollbar { width: 4px; }
+  .cselect-list::-webkit-scrollbar-track { background: transparent; }
+  .cselect-list::-webkit-scrollbar-thumb { background: rgba(154,207,132,0.2); border-radius: 4px; }
+  .cselect-list::-webkit-scrollbar-thumb:hover { background: rgba(154,207,132,0.4); }
+
+  .cselect-option:hover {
+    background: rgba(154,207,132,0.08);
+    color: rgba(255,255,255,0.9);
+  }
+  .cselect-option.active {
+    background: rgba(154,207,132,0.12);
+    color: #9ACF84;
   }
 </style>

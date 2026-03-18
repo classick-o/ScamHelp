@@ -52,30 +52,30 @@ const reasons = [
     <!-- Cards grid -->
     <div class="grid md:grid-cols-2 gap-4">
       {reasons.map((reason, i) => (
-        <div class={`reveal delay-${i + 1} group p-7 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-[#9ACF84]/15 transition-all duration-300 relative overflow-hidden`}>
+        <div class={`reveal delay-${i + 1} group p-4 md:p-7 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-[#9ACF84]/15 transition-all duration-300 relative overflow-hidden`}>
           <div class="absolute inset-0 bg-gradient-to-br from-[#9ACF84]/0 to-[#9ACF84]/0 group-hover:from-[#9ACF84]/3 group-hover:to-transparent transition-all duration-300 pointer-events-none"></div>
-          <div class="relative z-10 flex gap-5">
-            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center group-hover:bg-[#9ACF84]/12 transition-colors duration-200">
-              <svg class="w-5 h-5 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d={reason.iconPath} />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-white mb-2" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">
+          <div class="relative z-10">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center group-hover:bg-[#9ACF84]/12 transition-colors duration-200">
+                <svg class="w-5 h-5 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={reason.iconPath} />
+                </svg>
+              </div>
+              <h3 class="text-white" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">
                 {reason.title}
               </h3>
-              <p class="text-white/40" style="font-size:14px;line-height:1.65">
-                {reason.description}
-              </p>
             </div>
+            <p class="text-white/40" style="font-size:14px;line-height:1.65">
+              {reason.description}
+            </p>
           </div>
         </div>
       ))}
     </div>
 
     <!-- Process text + CTA -->
-    <div class="reveal delay-5 mt-12 p-8 rounded-xl bg-white/[0.02] border border-white/5">
-      <p class="text-white/35 mb-6" style="font-size:14px;line-height:1.85">
+    <div id="why-cta-box" class="reveal delay-5 mt-12 p-8 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer lg:cursor-default">
+      <p id="why-cta-text" class="text-white/35 mb-6" style="font-size:14px;line-height:1.85">
         Scam Help leverages regulations and consumer rights for professional recovery services.
         Upon validating your request and confirming fraud, our online fraud help guides you through
         the refund process, deciding on the best recovery approach together. Benefit from a free
@@ -97,3 +97,58 @@ const reasons = [
     </div>
   </div>
 </section>
+
+<script>
+  const box  = document.getElementById('why-cta-box');
+  const para = document.getElementById('why-cta-text');
+  if (!box || !para) throw new Error();
+
+  const fullText = para.textContent?.trim() ?? '';
+  const words    = fullText.split(/\s+/);
+  const LIMIT    = 30;
+  let expanded   = false;
+
+  function isMobile() { return window.innerWidth < 1024; }
+
+  function truncate() {
+    para.innerHTML =
+      words.slice(0, LIMIT).join(' ') +
+      '<span style="color:rgba(255,255,255,0.35)"> ...</span>';
+  }
+
+  para.style.overflow   = 'hidden';
+  para.style.transition = 'max-height 0.45s ease';
+
+  function init() {
+    if (!isMobile()) {
+      para.textContent  = fullText;
+      para.style.maxHeight = 'none';
+      return;
+    }
+    truncate();
+    requestAnimationFrame(() => {
+      para.style.maxHeight = para.scrollHeight + 'px';
+    });
+  }
+
+  init();
+
+  box.addEventListener('click', (e) => {
+    if (!isMobile() || expanded) return;
+    if ((e.target as HTMLElement).closest('a')) return;
+    expanded = true;
+    para.textContent = fullText;
+    para.style.maxHeight = para.scrollHeight + 'px';
+  });
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      para.textContent     = fullText;
+      para.style.maxHeight = 'none';
+      expanded = false;
+    } else if (!expanded) {
+      truncate();
+      para.style.maxHeight = para.scrollHeight + 'px';
+    }
+  });
+</script>

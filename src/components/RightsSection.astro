@@ -67,85 +67,68 @@ const steps = [
         </div>
       </div>
 
-      <!-- Image column -->
-      <div class="reveal from-right relative" style="perspective:1200px;">
-        <div class="rounded-xl overflow-hidden" style="transform:rotateY(-10deg);box-shadow:-24px 16px 60px rgba(0,0,0,0.18), -8px 6px 20px rgba(0,0,0,0.12);">
+      <!-- Image column — desktop: 3D floating cards, mobile: flat image + card grid -->
+      <div class="reveal from-right relative rights-img-col" style="perspective:1200px;">
+
+        <!-- Image -->
+        <div class="rounded-xl overflow-hidden rights-img" style="transform:rotateY(-10deg);box-shadow:-24px 16px 60px rgba(0,0,0,0.18), -8px 6px 20px rgba(0,0,0,0.12);">
           <img
             src="https://images.unsplash.com/photo-1758519288480-1489c17b1519?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwcHJvZmVzc2lvbmFsJTIwb2ZmaWNlfGVufDF8fHx8MTc3MjQ4Mzk2M3ww&ixlib=rb-4.1.0&q=80&w=1080"
             alt="Legal protection documents"
-            class="w-full h-[520px] object-cover"
+            class="w-full h-[520px] object-cover rights-img-el"
             loading="lazy"
           />
         </div>
 
-        <!-- Floating card: bottom left -->
-        <div class="absolute -bottom-6 -left-6 md:left-6 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
-          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
-            <div style="animation:float-card-1 8s ease-in-out infinite;">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-5 max-w-[260px] reveal delay-4" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
-              <div class="flex items-center gap-2.5 mb-2">
-                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+        <!-- Floating cards -->
+        <!-- bottom left -->
+          <div class="absolute -bottom-6 left-6 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+            <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+              <div style="animation:float-card-1 8s ease-in-out infinite;">
+                <div class="bg-white border border-[#e8e8e8] rounded-xl p-5 max-w-[260px] reveal delay-4" style="box-shadow:0 8px 30px rgba(0,0,0,0.12);">
+                  <div class="flex items-center gap-2.5 mb-2">
+                    <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">Your Rights Are Protected</span>
+                  </div>
+                  <p class="text-[#888]" style="font-size:12px;line-height:1.5">EU & international consumer protection laws empower you to recover unauthorized charges.</p>
                 </div>
-                <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
-                  Your Rights Are Protected
-                </span>
               </div>
-              <p class="text-[#888]" style="font-size:12px;line-height:1.5">
-                EU & international consumer protection laws empower you to recover unauthorized charges.
-              </p>
             </div>
           </div>
-          </div>
-        </div>
-
-        <!-- Floating card: top right -->
-        <div class="absolute -top-5 -right-4 md:right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
-          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
-            <div style="animation:float-card-2 9s ease-in-out infinite;">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[230px] reveal delay-5" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
-              <div class="flex items-center gap-2.5 mb-1.5">
-                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
+          <!-- top right -->
+          <div class="absolute -top-5 right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+            <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+              <div style="animation:float-card-2 9s ease-in-out infinite;">
+                <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[230px] reveal delay-5" style="box-shadow:0 8px 30px rgba(0,0,0,0.12);">
+                  <div class="flex items-center gap-2.5 mb-1.5">
+                    <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                    </div>
+                    <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">Expert Legal Team</span>
+                  </div>
+                  <p class="text-[#888]" style="font-size:11px;line-height:1.5">Dedicated fraud recovery specialists with proven track records.</p>
                 </div>
-                <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
-                  Expert Legal Team
-                </span>
               </div>
-              <p class="text-[#888]" style="font-size:11px;line-height:1.5">
-                Dedicated fraud recovery specialists with proven track records.
-              </p>
             </div>
           </div>
-          </div>
-        </div>
-
-        <!-- Floating card: middle right -->
-        <div class="absolute top-[60%] -translate-y-1/2 -right-8 md:-right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
-          <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
-            <div style="animation:float-card-3 10s ease-in-out infinite;">
-            <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[210px] reveal delay-6" style="box-shadow:0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);">
-              <div class="flex items-center gap-2.5 mb-1.5">
-                <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
+          <!-- middle right -->
+          <div class="absolute top-[60%] -translate-y-1/2 -right-4 z-10 floating-card-wrapper" style="perspective:800px;transform-style:preserve-3d;">
+            <div class="floating-card-rotate" style="transform:rotateY(-10deg);transition:transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);">
+              <div style="animation:float-card-3 10s ease-in-out infinite;">
+                <div class="bg-white border border-[#e8e8e8] rounded-xl p-4 max-w-[210px] reveal delay-6" style="box-shadow:0 8px 30px rgba(0,0,0,0.12);">
+                  <div class="flex items-center gap-2.5 mb-1.5">
+                    <div class="w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center flex-shrink-0">
+                      <svg class="w-5 h-5 text-[#2d5a1e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                    </div>
+                    <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">Full Compliance</span>
+                  </div>
+                  <p class="text-[#888]" style="font-size:11px;line-height:1.5">All actions taken within regulatory frameworks & legal standards.</p>
                 </div>
-                <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
-                  Full Compliance
-                </span>
               </div>
-              <p class="text-[#888]" style="font-size:11px;line-height:1.5">
-                All actions taken within regulatory frameworks & legal standards.
-              </p>
             </div>
           </div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -155,5 +138,11 @@ const steps = [
 <style>
   .floating-card-wrapper:hover .floating-card-rotate {
     transform: rotateY(0deg) !important;
+  }
+
+  @media (max-width: 1079px) {
+    .rights-img                { transform: none !important; box-shadow: 0 8px 30px rgba(0,0,0,0.12) !important; }
+    .rights-img-col            { perspective: none !important; }
+    .rights-img-col .floating-card-rotate { transform: none !important; }
   }
 </style>

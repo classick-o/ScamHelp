@@ -11,11 +11,11 @@ const navLinks = [
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-[72px]">
+    <div class="flex items-center justify-between h-[56px] lg:h-[72px]">
 
       <!-- Logo -->
       <a href="#" class="btn-scale flex items-center">
-        <img src="/logo_simple.svg" alt="ScamHelp" class="h-9 w-auto" />
+        <img src="/logo_simple.svg" alt="ScamHelp" class="w-7 lg:w-auto lg:h-9" />
       </a>
 
       <!-- Desktop Nav -->
@@ -77,13 +77,13 @@ const navLinks = [
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="lg:hidden bg-[#0a0a0f]/98 backdrop-blur-2xl border-t border-white/5">
+  <div id="mobile-menu" class="lg:hidden border-t border-white/5">
     <div class="px-6 py-5 space-y-0.5">
       {navLinks.map((link) => (
         <div>
           <a
             href={link.href}
-            class="mobile-link block py-3 text-white/60 hover:text-white transition-colors"
+            class="mobile-link block py-3 text-white transition-colors"
             style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:500"
           >
             {link.label}
@@ -107,7 +107,7 @@ const navLinks = [
         <a
           href="#consultation"
           class="mobile-link block text-center px-5 py-3 bg-[#9ACF84] text-[#0a0a0f] rounded-lg"
-          style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600"
+          style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;box-shadow:0 4px 20px rgba(154,207,132,0.45), 0 2px 8px rgba(0,0,0,0.3)"
         >
           Free Consultation
         </a>
