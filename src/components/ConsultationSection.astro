@@ -17,7 +17,7 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
   <!-- Decorative layer (clipped separately) -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
     <video autoplay muted loop playsinline class="absolute inset-0 z-[0] w-full h-full object-cover">
-      <source src="/form_section_video.mp4" type="video/mp4" />
+      <source src={`${import.meta.env.BASE_URL}form_section_video.mp4`} type="video/mp4" />
     </video>
     <div class="absolute inset-0 z-[1]" style="background:rgba(10,10,15,0.88);"></div>
 
