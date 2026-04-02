@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 
 const phones = [
@@ -128,54 +129,8 @@ const phones = [
 
     <!-- Contact form -->
     <section class="pb-20 px-6">
-      <div class="max-w-3xl mx-auto reveal">
-        <div class="p-8 md:p-10 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-md">
-            <h2 class="text-white mb-2" style="font-family:'Montserrat',sans-serif;font-size:22px;font-weight:600">Send us a message</h2>
-            <p class="text-white/30 mb-8" style="font-size:13px">Fill out the form below and we'll get back to you within 24 hours.</p>
-
-            <form id="contact-form" class="space-y-4">
-              <div class="grid sm:grid-cols-2 gap-4">
-                <input type="text" name="name" placeholder="Name*" required class="contact-input" />
-                <input type="email" name="email" placeholder="Email*" required class="contact-input" />
-              </div>
-              <input type="tel" name="phone" placeholder="Contact No*" required class="contact-input" />
-              <select name="country" required class="contact-input contact-select">
-                <option value="" disabled selected>Country*</option>
-                <option>Netherlands</option>
-                <option>United Kingdom</option>
-                <option>United States</option>
-                <option>Germany</option>
-                <option>France</option>
-                <option>Spain</option>
-                <option>Italy</option>
-                <option>Australia</option>
-                <option>Canada</option>
-                <option>Other</option>
-              </select>
-              <textarea name="message" rows="5" placeholder="Message" class="contact-input" style="resize:none;"></textarea>
-
-              <button type="submit" class="w-full flex items-center justify-center gap-2 px-8 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors duration-200" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
-                Get A Free Consultation
-              </button>
-
-              <p class="text-white/20 text-center" style="font-size:11px">Your information is confidential and secure.</p>
-            </form>
-
-            <script>
-              document.getElementById('contact-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const form = e.target as HTMLFormElement;
-                const data = {
-                  name: (form.elements.namedItem('name') as HTMLInputElement).value,
-                  email: (form.elements.namedItem('email') as HTMLInputElement).value,
-                  phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-                  country: (form.elements.namedItem('country') as HTMLSelectElement).value,
-                  message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-                };
-                console.log('Contact form submission:', JSON.stringify(data, null, 2));
-              });
-            </script>
-          </div>
+      <div class="max-w-3xl mx-auto reveal" id="contact-form">
+        <ContactForm />
       </div>
     </section>
 
@@ -259,38 +214,6 @@ const phones = [
   }
   .contact-card-icon svg {
     color: #0a0a0f !important;
-  }
-
-  /* Form inputs */
-  .contact-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: #13131d;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 0.75rem;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .contact-input::placeholder {
-    color: rgba(255,255,255,0.25);
-  }
-  .contact-input:focus {
-    outline: none;
-    border-color: rgba(154,207,132,0.5);
-    box-shadow: 0 0 0 2px rgba(154,207,132,0.1);
-  }
-  .contact-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-  }
-  .contact-select option {
-    background: #13131d;
-    color: white;
   }
 
   /* Stat cards */
