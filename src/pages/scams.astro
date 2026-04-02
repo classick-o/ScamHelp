@@ -8,6 +8,7 @@ const scams = [
   {
     title: "Forex",
     highlight: "scams",
+    slug: "forex",
     paragraphs: [
       "The forex market (FX) is the world's largest trading market. Nearly $5 trillion are traded daily. The market opens 24 hours a day. When trading closes in New York it starts again in Tokyo and Hong Kong. Since there are constant price fluctuations, this market can make institutions, companies and individuals a lot of money.",
       "Forex fraud is a growing problem and there is no guaranteed way to avoid it. People under 25 are falling in droves due to the lavish payouts promised. Until recently, older people (those over 50 and in retirement) were considered to be the most vulnerable target. All that, is apparently a trend in the past. Those who currently make up the over 55 age group category have grown somewhat immune to the tricks of the online scammers, the young adult category has become the preferred target now.",
@@ -18,6 +19,7 @@ const scams = [
   {
     title: "Binary option",
     highlight: "scams",
+    slug: "binary-option",
     paragraphs: [
       "Scams are extremely common in the field of binary options. When new financial instruments or forms of trading emerge, a whole range of businesses tend to get involved and some of those product providers are more trustworthy than others. This is certainly true of binary options, these platforms tend to operate under the radar.",
       "A binary option is a type of options contract where the payout depends entirely on the outcome of a yes/no proposition, typically related to the price of a particular asset such as a stock or a commodity. With binary options you don't actually buy stock or commodities you just bet on its price within a certain time period. Some binary options are listed on registered exchanges or traded on a designated contract market and are subject to oversight by U.S. regulators such as the Commodity Futures Trading Commission (CFTC), however a large part of the binary options market operates through websites that don't comply with U.S. regulations or any Financial Regulatory Authorities.",
@@ -28,6 +30,7 @@ const scams = [
   {
     title: "Cryptocurrency",
     highlight: "scams",
+    slug: "cryptocurrency",
     paragraphs: [
       "Cryptocurrency market significantly grew within past 10 years and there is a high probability of making a big profit investing in virtual money. Scams and fraudulent schemes are everywhere online so the prospect of making 'quick money' can blind most people even though there is much higher risk involved into crypto transactions.",
       "Complex blockchain technology crypto companies are using is considered safe, however scammers find ways to take advantage of naive investors breaking into users' digital wallets. Keeping in mind the fact that people usually buy cryptocurrencies using credit cards, wire transfer or other types of payments there is bank liability taking place. Thus there is a legitimate solution to get your money back.",
@@ -38,6 +41,7 @@ const scams = [
   {
     title: "Online casino",
     highlight: "scams",
+    slug: "online-casino",
     paragraphs: [
       "The global online gambling market today is worth around 60 billion USD and keeps growing exponentially. Being a part of an online gambling community is quite risky by itself since virtual poker, casinos and sports betting websites use various fraudulent moves to decrease your chances to win. Online casinos, slot machines and so on are not designed to help you earning money, they do care only about generating as much revenue as possible on their end. Even though a large number of casinos are fully licensed and legitimate, there are a lot of shady players who ridiculously over-charge for the withdrawal or freeze players' accounts once they try to pull their money out. There are multiple ways for cybercriminals and fraudsters to game the system from using bonus abuse techniques to steal your credit card details.",
     ],
@@ -47,6 +51,7 @@ const scams = [
   {
     title: "Fake exchange",
     highlight: "scams",
+    slug: "fake-exchange",
     paragraphs: [
       "The cryptocurrency market has seen tremendous growth over the past decade, attracting investors with the potential for significant profits. Unfortunately, this rapid rise has also led to an increase in scams and fraudulent schemes, especially through fake cryptocurrency exchanges. These scams prey on the desire to make quick profits, often blinding people to the high risks involved.",
       "Fake exchanges imitate real platforms, tricking investors into trusting them. After funds are deposited, scammers can vanish, leaving wallets empty. Although blockchain is secure, scammers use clever tactics to exploit newcomers. Many fund these fake accounts via credit cards or bank transfers, making it possible to recover lost funds through financial institutions. If you've fallen victim to a fake exchange, there are legitimate ways to pursue recovery.",
@@ -57,6 +62,7 @@ const scams = [
   {
     title: "Investment",
     highlight: "scams",
+    slug: "investment",
     paragraphs: [
       `The global investment market has grown massively, attracting people seeking high returns. However, the promise of quick profits makes investment schemes risky, as many fraudulent "investment opportunities" are designed to deceive. Fake investment platforms often use unrealistic promises of guaranteed returns to lure in unsuspecting investors, only to disappear with their money. While some investment firms are legitimate, there are many scammers who charge excessive fees, delay withdrawals, or freeze accounts when investors try to cash out. Cybercriminals use various tactics, from manipulating returns to phishing for personal information, to exploit those looking to grow their wealth.`,
     ],
@@ -66,6 +72,7 @@ const scams = [
   {
     title: "Other",
     highlight: "scams",
+    slug: null,
     paragraphs: [
       `Unwanted emails and messages bombard us on a regular basis. Many people ignore, delete or toss junk mail in the rubbish knowing that these messages are most likely mass-market scams. Scammers will often use persuasion techniques such as pretending to be a legitimate business and using local area codes to build trust and familiarity. They make time-sensitive claims to increase urgency. Some use images of money or prizes and even pictures of past "winners", these are typical 'Phishing Scams'.`,
       `Others use legal-sounding text to create the perception of a legitimate company. People are generally most vulnerable in situations such as a sudden loss of regular income or in the case of impending retirement. If you have been contacted by someone with a quick solution to your most critical financial situation and they require personal information or payments from you, it is advisable to stop immediately. If you've been a victim of any type of a scam, it doesn't mean that your funds are lost forever.`,
@@ -127,7 +134,7 @@ const scams = [
               ))}
 
               <div class="mt-8">
-                <a href={`${import.meta.env.BASE_URL}/contact-us`} class="scam-report-btn group inline-flex items-center gap-3">
+                <a href={`${import.meta.env.BASE_URL}/${scam.slug ? `contact-${scam.slug}-scams` : 'contact-us'}`} class="scam-report-btn group inline-flex items-center gap-3">
                   <span class="w-10 h-10 rounded-full bg-[#9ACF84] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-4 h-4 text-[#0a0a0f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                   </span>
