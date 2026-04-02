@@ -1,4 +1,5 @@
 ---
+const { BASE_URL } = import.meta.env;
 const reasons = [
   {
     title: "Top Industry Leaders",
@@ -27,7 +28,19 @@ const reasons = [
 ];
 ---
 
-<section class="py-16 md:py-20 bg-[#0a0a0f] relative overflow-hidden">
+<section class="py-16 md:py-20 relative overflow-hidden">
+  <!-- Video background -->
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    src={`${BASE_URL}/why_us_section_video.mp4`}
+    autoplay
+    muted
+    loop
+    playsinline
+    aria-hidden="true"
+  ></video>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-[#0a0a0f]/80"></div>
 
 
   <!-- Marquee text background -->
@@ -52,7 +65,7 @@ const reasons = [
     <!-- Cards grid -->
     <div class="grid md:grid-cols-2 gap-4">
       {reasons.map((reason, i) => (
-        <div class={`reveal delay-${i + 1} group p-4 md:p-7 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-[#9ACF84]/15 transition-all duration-300 relative overflow-hidden`}>
+        <div class={`reveal delay-${i + 1} group p-4 md:p-7 rounded-xl border border-white/5 bg-white/[0.04] backdrop-blur-md hover:bg-white/[0.07] hover:border-[#9ACF84]/15 transition-all duration-300 relative overflow-hidden`}>
           <div class="absolute inset-0 bg-gradient-to-br from-[#9ACF84]/0 to-[#9ACF84]/0 group-hover:from-[#9ACF84]/3 group-hover:to-transparent transition-all duration-300 pointer-events-none"></div>
           <div class="relative z-10">
             <div class="flex items-center gap-4 mb-3">
@@ -74,7 +87,7 @@ const reasons = [
     </div>
 
     <!-- Process text + CTA -->
-    <div id="why-cta-box" class="reveal delay-5 mt-12 p-8 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer lg:cursor-default">
+    <div id="why-cta-box" class="reveal delay-5 mt-12 p-8 rounded-xl bg-white/[0.04] backdrop-blur-md border border-white/5 cursor-pointer lg:cursor-default">
       <p id="why-cta-text" class="text-white/35 mb-6" style="font-size:14px;line-height:1.85">
         Scam Help leverages regulations and consumer rights for professional recovery services.
         Upon validating your request and confirming fraud, our online fraud help guides you through
