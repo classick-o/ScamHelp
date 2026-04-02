@@ -3,117 +3,275 @@
 
 <section id="hero" class="relative flex flex-col items-center overflow-hidden" style="background:#0a0a0f;height:clamp(800px, 100vh, 900px);">
 
-  <!-- Background video — fullscreen behind everything -->
+  <!-- Background video — lazy, no preload -->
   <video
     autoplay
     muted
     loop
     playsinline
+    preload="none"
     class="absolute inset-0 z-[0] w-full h-full object-cover pointer-events-none"
   >
     <source src={`${import.meta.env.BASE_URL}/hero_video.mp4`} type="video/mp4" />
   </video>
-  <!-- Dark green-tinted overlay -->
-  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:linear-gradient(to bottom, rgba(10,10,15,0.95), rgba(15,35,12,0.92), rgba(10,10,15,0.95));"></div>
-  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:rgba(154,207,132,0.05);mix-blend-mode:overlay;"></div>
-
-  <!-- Grid pattern overlay -->
-  <div class="absolute inset-0 z-[2] pointer-events-none"
-    style="opacity:0.028;background-image:linear-gradient(rgba(154,207,132,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(154,207,132,0.5) 1px,transparent 1px);background-size:60px 60px;"></div>
+  <!-- Subtle dark overlay -->
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:linear-gradient(to bottom, rgba(10,10,15,0.75), rgba(10,15,12,0.6), rgba(10,10,15,0.75));"></div>
+  <!-- Green hue shift -->
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:rgba(154,207,132,0.22);mix-blend-mode:color;"></div>
 
 
-  <!-- Content — centered column, above video -->
-  <div class="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto px-6 pt-40 pb-10">
+  <!-- Single canvas for 3D logo — positioned via CSS per breakpoint -->
+  <div id="hero-3d-container" class="absolute inset-0 z-[3] flex items-center justify-center pointer-events-none">
+    <canvas id="hero-3d-canvas"></canvas>
+  </div>
 
-    <!-- Logo icon -->
-    <div class="mb-10 reveal" style="transition-delay:0.1s">
-      <div class="hero-icon-outer">
-        <div class="hero-icon-inner">
-          <img src={`${import.meta.env.BASE_URL}/logo_simple.svg`} alt="Scam Help" class="w-11 h-11" style="filter:brightness(0) invert(1);" />
-        </div>
-      </div>
-    </div>
+  <!-- Content — two-column on 950px+, stacked on mobile -->
+  <div class="relative z-10 flex flex-col hero-layout items-center w-full max-w-7xl mx-auto px-6 pt-32 pb-10 gap-8 h-full">
 
-    <!-- Badge -->
-    <div class="mb-6 reveal" style="transition-delay:0.2s">
-      <span class="inline-flex items-center gap-2 text-white/60" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">
-        <span class="w-2 h-2 rounded-full bg-[#9ACF84]"></span>
-        Scam Victim Support
-      </span>
-    </div>
+    <!-- Left: Text content -->
+    <div class="flex flex-col items-center text-center flex-1 hero-text-content">
 
-    <!-- Heading -->
-    <h1 class="mb-6 reveal"
-      style="font-family:'Inter',sans-serif;font-weight:600;line-height:1.08;letter-spacing:-0.035em;font-size:clamp(32px,5.5vw,68px);transition-delay:0.3s">
-      <span class="text-white/90">Get Back What Is</span><br />
-      <span class="text-white/90">Rightfully Yours.</span>
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="text-white/40 max-w-lg mb-10 reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;transition-delay:0.45s">
-      Our expertise spans diverse sectors, from crypto trading to consumer protection.
-      If you've fallen victim to any scam, we're here to help.
-    </p>
-
-    <!-- CTA button -->
-    <div class="mb-12 reveal" style="transition-delay:0.55s">
-      <a href="#consultation" class="hero-cta">
-        <span class="hero-cta-inner" style="font-family:'Inter',sans-serif;font-size:15px;">
-          Learn More
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
-          </svg>
+      <!-- Badge -->
+      <div class="mb-7 reveal" style="transition-delay:0.2s">
+        <span class="hero-badge inline-flex items-center gap-2 text-white/60 px-3 py-1.5 rounded-[10px] border border-white/10 backdrop-blur-xl bg-white/[0.10]" style="font-family:'Inter',sans-serif;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">
+          <svg class="hero-badge-icon w-3 h-3 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Scam Victim Support
         </span>
-      </a>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="mb-7 reveal"
+        style="font-family:'Inter',sans-serif;font-weight:600;line-height:1.08;letter-spacing:-0.035em;font-size:clamp(36px,5.5vw,72px);transition-delay:0.3s">
+        <span class="text-white/90">Get Back What Is</span><br />
+        <span class="text-white/90">Rightfully Yours.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-[#8a8a8a] max-w-lg mb-12 reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;transition-delay:0.45s;text-shadow:0 0 15px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7);">
+        Our expertise spans diverse sectors, from crypto trading to consumer protection.
+        If you've fallen victim to any scam, we're here to help.
+      </p>
+
+      <!-- CTA button -->
+      <div class="mb-14 reveal" style="transition-delay:0.55s">
+        <a href="#consultation" class="hero-cta">
+          <span class="hero-cta-inner" style="font-family:'Inter',sans-serif;font-size:15px;">
+            Learn More
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- Trust stats with dividers -->
+      <div class="flex items-center gap-6 reveal" style="transition-delay:0.65s">
+        <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">750+ Clients</span>
+        <span class="w-px h-4 bg-white/10"></span>
+        <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">60+ Countries</span>
+        <span class="w-px h-4 bg-white/10"></span>
+        <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">24/7 Support</span>
+      </div>
+
     </div>
 
-    <!-- Trust stats with dividers -->
-    <div class="flex items-center gap-6 reveal" style="transition-delay:0.65s">
-      <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">750+ Clients</span>
-      <span class="w-px h-4 bg-white/10"></span>
-      <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">60+ Countries</span>
-      <span class="w-px h-4 bg-white/10"></span>
-      <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:14px;">24/7 Support</span>
-    </div>
+    <!-- Right: spacer for desktop layout (canvas is absolutely positioned) -->
+    <div class="flex-1 hidden hero-desktop-spacer"></div>
 
   </div>
 
-
 </section>
 
+<script>
+  // Lazy-load Three.js only when hero is visible
+  let threeLoaded = false;
+  let animationId = null;
+  let renderer = null;
+  let isVisible = true;
+
+  const heroSection = document.getElementById('hero');
+  if (heroSection) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries[0].isIntersecting;
+      isVisible = visible;
+
+      if (visible && !threeLoaded) {
+        threeLoaded = true;
+        initThreeScene();
+      }
+    }, { threshold: 0.1 });
+
+    observer.observe(heroSection);
+  }
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    isVisible = !document.hidden;
+  });
+
+  async function initThreeScene() {
+    const [THREE, { GLTFLoader }] = await Promise.all([
+      import('three'),
+      import('three/addons/loaders/GLTFLoader.js'),
+    ]);
+
+    const canvas = document.getElementById('hero-3d-canvas');
+    if (!canvas) return;
+
+    // Detect layout: mobile (<950px) or desktop
+    const isMobile = window.innerWidth < 950;
+    const size = isMobile ? 350 : 480;
+    const exposure = isMobile ? 0.8 : 1.8;
+    const lightMult = isMobile ? 0.4 : 1.0;
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(size, size);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0;
+    const targetExposure = exposure;
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+    camera.position.set(0, 0, 4.2);
+    camera.lookAt(0, 0, 0);
+
+    // Lights
+    const ambient = new THREE.AmbientLight(0x111511, 0.5);
+    scene.add(ambient);
+
+    const dirLight = new THREE.DirectionalLight(0x9ACF84, 2.5 * lightMult);
+    dirLight.position.set(5, 2, 1);
+    scene.add(dirLight);
+
+    const fillLight = new THREE.DirectionalLight(0x9ACF84, 1.1 * lightMult);
+    fillLight.position.set(-8, 1, 5);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0x9ACF84, 0.8 * lightMult);
+    rimLight.position.set(-1, 3, -3);
+    scene.add(rimLight);
+
+    // Load model
+    const loader = new GLTFLoader();
+    const pivot = new THREE.Group();
+    scene.add(pivot);
+    let loaded = false;
+    const baseUrl = document.querySelector('#hero video source')?.src?.replace('/hero_video.mp4', '') || '';
+
+    loader.load(baseUrl + '/scamHelp-logo.glb', (gltf) => {
+      const model = gltf.scene;
+
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0.45, 0.58, 0.44),
+        metalness: 0.92,
+        roughness: 0.45,
+        envMapIntensity: 1.0,
+      });
+
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.material = material;
+        }
+      });
+
+      const box = new THREE.Box3().setFromObject(model);
+      const boxSize = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(boxSize.x, boxSize.y, boxSize.z);
+      const s = 2.0 / maxDim;
+      model.scale.setScalar(s);
+
+      const box2 = new THREE.Box3().setFromObject(model);
+      const center2 = box2.getCenter(new THREE.Vector3());
+      model.position.set(-center2.x, -center2.y, -center2.z);
+
+      pivot.add(model);
+      loaded = true;
+    });
+
+    // Animation loop — pauses when not visible
+    const clock = new THREE.Clock();
+    function animate() {
+      animationId = requestAnimationFrame(animate);
+
+      if (!isVisible) return; // skip rendering when hidden
+
+      const t = clock.getElapsedTime();
+
+      // Smooth fade-in: ease exposure from 0 to target over 3s
+      const fadeDuration = 3.0;
+      if (t < fadeDuration) {
+        const progress = t / fadeDuration;
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        renderer.toneMappingExposure = targetExposure * eased;
+      } else {
+        renderer.toneMappingExposure = targetExposure;
+      }
+
+      if (loaded) {
+        pivot.rotation.y = t * 0.4 + 0.5;
+        pivot.position.y = Math.sin(t * 0.8) * 0.15;
+      }
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+</script>
+
 <style>
-  .hero-icon-outer {
-    width: 96px;
-    height: 96px;
-    border-radius: 16px;
-    background-color: rgb(4, 12, 6);
-    display: flex;
+  /* Mobile layout (below 950px) */
+  #hero-3d-container {
+    opacity: 0.3;
+  }
+  #hero-3d-canvas {
+    width: 350px;
+    height: 350px;
+  }
+  .hero-desktop-spacer { display: none; }
+  .hero-layout { flex-direction: column; padding-top: 8rem; gap: 2rem; }
+  .hero-text-content {
     align-items: center;
-    justify-content: center;
-    box-shadow:
-      rgba(84, 160, 108, 0.37) 0px 0.707px 0.707px -0.667px,
-      rgba(84, 160, 108, 0.36) 0px 1.807px 1.807px -1.333px,
-      rgba(84, 160, 108, 0.34) 0px 3.622px 3.622px -2px,
-      rgba(84, 160, 108, 0.31) 0px 6.866px 6.866px -2.667px,
-      rgba(84, 160, 108, 0.247) 0px 13.647px 13.647px -3.333px,
-      rgba(84, 160, 108, 0.094) 0px 30px 30px -4px;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.25) 50%, transparent 75%);
+    padding: 0;
+    border-radius: 1rem;
+  }
+  .hero-badge { font-size: 11px; padding: 0.375rem 0.75rem; }
+  .hero-badge-icon { width: 0.75rem; height: 0.75rem; }
+
+  /* Desktop layout (950px+) */
+  @media (min-width: 950px) {
+    #hero-3d-container {
+      opacity: 1;
+      position: absolute;
+      inset: auto;
+      right: 15%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 480px;
+      height: 480px;
+    }
+    #hero-3d-canvas {
+      width: 480px;
+      height: 480px;
+    }
+    .hero-desktop-spacer { display: flex; }
+    .hero-layout { flex-direction: row; padding-top: 0; gap: 1rem; }
+    .hero-text-content {
+      align-items: flex-start;
+      text-align: left;
+      padding-top: 5rem;
+      background: none;
+      padding: 0;
+    }
+    .hero-badge { font-size: 13px; padding: 0.625rem 1.25rem; }
+    .hero-badge-icon { width: 1rem; height: 1rem; }
   }
 
-  .hero-icon-inner {
-    width: 76px;
-    height: 76px;
-    border-radius: 10px;
-    background-color: rgb(5, 15, 7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-      rgba(87, 154, 132, 0.48) 0px 0.796px 0.796px -0.875px,
-      rgba(87, 154, 132, 0.455) 0px 2.415px 2.415px -1.75px,
-      rgba(87, 154, 132, 0.4) 0px 6.383px 6.383px -2.625px,
-      rgba(87, 154, 132, 0.21) 0px 20px 20px -3.5px;
-  }
-
+  /* CTA button */
   .hero-cta {
     padding: 2px;
     border-radius: 15px;
@@ -149,4 +307,3 @@
     font-weight: 500;
   }
 </style>
-
