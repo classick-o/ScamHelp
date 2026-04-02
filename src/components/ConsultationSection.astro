@@ -13,15 +13,11 @@ const amounts     = ["Below 5,000 EUR","5,000–10,000 EUR","10,000–30,000 EUR
 const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounded-xl text-white placeholder-white/25 focus:border-[#9ACF84]/50 focus:outline-none focus:ring-1 focus:ring-[#9ACF84]/20 transition-all duration-200";
 ---
 
-<section id="consultation" class="bg-[#0a0a0f] relative py-16 md:py-20">
-  <!-- Decorative layer (clipped separately) -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <video autoplay muted loop playsinline class="absolute inset-0 z-[0] w-full h-full object-cover">
-      <source src={`${import.meta.env.BASE_URL}/form_section_video.mp4`} type="video/mp4" />
-    </video>
-    <div class="absolute inset-0 z-[1]" style="background:rgba(10,10,15,0.88);"></div>
-
-  </div>
+<section id="consultation" class="consultation-section relative py-16 md:py-20">
+  <!-- Video background -->
+  <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 z-[0] w-full h-full object-cover pointer-events-none">
+    <source src={`${import.meta.env.BASE_URL}/form_section_video.mp4`} type="video/mp4" />
+  </video>
 
   <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -197,6 +193,23 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 </script>
 
 <style>
+  /* Section overlay via pseudo-element — immune to child reveal transitions */
+  .consultation-section {
+    background: #0a0a0f;
+    overflow: hidden;
+  }
+  .consultation-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(10,10,15,0.88);
+    pointer-events: none;
+  }
+  .consultation-section > .relative {
+    z-index: 2;
+  }
+
   /* Custom select */
   .cselect {
     position: relative;

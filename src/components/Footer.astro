@@ -1,10 +1,10 @@
 ---
 const legalLinks = [
-  "Company Registration",
-  "Privacy Policy",
-  "Terms And Conditions",
-  "Cookie Policy",
-  "Data Protection Addendum",
+  { label: "Company Registration", href: "https://www.kvk.nl/bestellen/#/78091624000045743274", external: true },
+  { label: "Privacy Policy", href: `${import.meta.env.BASE_URL}/privacy-policy` },
+  { label: "Terms And Conditions", href: `${import.meta.env.BASE_URL}/terms-and-conditions` },
+  { label: "Cookie Policy", href: `${import.meta.env.BASE_URL}/cookie-policy` },
+  { label: "Data Protection Addendum", href: `${import.meta.env.BASE_URL}/data-protection-addendum` },
 ];
 
 const phones = [
@@ -52,8 +52,14 @@ const phones = [
         <ul class="space-y-3">
           {legalLinks.map((link) => (
             <li>
-              <a href="#" class="text-white/50 hover:text-[#9ACF84] transition-colors duration-200 underline underline-offset-2" style="font-size:13px">
-                {link}
+              <a
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                class="text-white/50 hover:text-[#9ACF84] transition-colors duration-200 underline underline-offset-2"
+                style="font-size:13px"
+              >
+                {link.label}
               </a>
             </li>
           ))}
