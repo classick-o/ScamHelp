@@ -1,16 +1,222 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import ConsultationSection from '../components/ConsultationSection.astro';
+import Footer from '../components/Footer.astro';
+
+const scams = [
+  {
+    title: "Forex",
+    highlight: "scams",
+    paragraphs: [
+      "The forex market (FX) is the world's largest trading market. Nearly $5 trillion are traded daily. The market opens 24 hours a day. When trading closes in New York it starts again in Tokyo and Hong Kong. Since there are constant price fluctuations, this market can make institutions, companies and individuals a lot of money.",
+      "Forex fraud is a growing problem and there is no guaranteed way to avoid it. People under 25 are falling in droves due to the lavish payouts promised. Until recently, older people (those over 50 and in retirement) were considered to be the most vulnerable target. All that, is apparently a trend in the past. Those who currently make up the over 55 age group category have grown somewhat immune to the tricks of the online scammers, the young adult category has become the preferred target now.",
+    ],
+    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+    number: "01",
+  },
+  {
+    title: "Binary option",
+    highlight: "scams",
+    paragraphs: [
+      "Scams are extremely common in the field of binary options. When new financial instruments or forms of trading emerge, a whole range of businesses tend to get involved and some of those product providers are more trustworthy than others. This is certainly true of binary options, these platforms tend to operate under the radar.",
+      "A binary option is a type of options contract where the payout depends entirely on the outcome of a yes/no proposition, typically related to the price of a particular asset such as a stock or a commodity. With binary options you don't actually buy stock or commodities you just bet on its price within a certain time period. Some binary options are listed on registered exchanges or traded on a designated contract market and are subject to oversight by U.S. regulators such as the Commodity Futures Trading Commission (CFTC), however a large part of the binary options market operates through websites that don't comply with U.S. regulations or any Financial Regulatory Authorities.",
+    ],
+    iconPath: "M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+    number: "02",
+  },
+  {
+    title: "Cryptocurrency",
+    highlight: "scams",
+    paragraphs: [
+      "Cryptocurrency market significantly grew within past 10 years and there is a high probability of making a big profit investing in virtual money. Scams and fraudulent schemes are everywhere online so the prospect of making 'quick money' can blind most people even though there is much higher risk involved into crypto transactions.",
+      "Complex blockchain technology crypto companies are using is considered safe, however scammers find ways to take advantage of naive investors breaking into users' digital wallets. Keeping in mind the fact that people usually buy cryptocurrencies using credit cards, wire transfer or other types of payments there is bank liability taking place. Thus there is a legitimate solution to get your money back.",
+    ],
+    iconPath: "M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z",
+    number: "03",
+  },
+  {
+    title: "Online casino",
+    highlight: "scams",
+    paragraphs: [
+      "The global online gambling market today is worth around 60 billion USD and keeps growing exponentially. Being a part of an online gambling community is quite risky by itself since virtual poker, casinos and sports betting websites use various fraudulent moves to decrease your chances to win. Online casinos, slot machines and so on are not designed to help you earning money, they do care only about generating as much revenue as possible on their end. Even though a large number of casinos are fully licensed and legitimate, there are a lot of shady players who ridiculously over-charge for the withdrawal or freeze players' accounts once they try to pull their money out. There are multiple ways for cybercriminals and fraudsters to game the system from using bonus abuse techniques to steal your credit card details.",
+    ],
+    iconPath: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    number: "04",
+  },
+  {
+    title: "Fake exchange",
+    highlight: "scams",
+    paragraphs: [
+      "The cryptocurrency market has seen tremendous growth over the past decade, attracting investors with the potential for significant profits. Unfortunately, this rapid rise has also led to an increase in scams and fraudulent schemes, especially through fake cryptocurrency exchanges. These scams prey on the desire to make quick profits, often blinding people to the high risks involved.",
+      "Fake exchanges imitate real platforms, tricking investors into trusting them. After funds are deposited, scammers can vanish, leaving wallets empty. Although blockchain is secure, scammers use clever tactics to exploit newcomers. Many fund these fake accounts via credit cards or bank transfers, making it possible to recover lost funds through financial institutions. If you've fallen victim to a fake exchange, there are legitimate ways to pursue recovery.",
+    ],
+    iconPath: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4",
+    number: "05",
+  },
+  {
+    title: "Investment",
+    highlight: "scams",
+    paragraphs: [
+      `The global investment market has grown massively, attracting people seeking high returns. However, the promise of quick profits makes investment schemes risky, as many fraudulent "investment opportunities" are designed to deceive. Fake investment platforms often use unrealistic promises of guaranteed returns to lure in unsuspecting investors, only to disappear with their money. While some investment firms are legitimate, there are many scammers who charge excessive fees, delay withdrawals, or freeze accounts when investors try to cash out. Cybercriminals use various tactics, from manipulating returns to phishing for personal information, to exploit those looking to grow their wealth.`,
+    ],
+    iconPath: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
+    number: "06",
+  },
+  {
+    title: "Other",
+    highlight: "scams",
+    paragraphs: [
+      `Unwanted emails and messages bombard us on a regular basis. Many people ignore, delete or toss junk mail in the rubbish knowing that these messages are most likely mass-market scams. Scammers will often use persuasion techniques such as pretending to be a legitimate business and using local area codes to build trust and familiarity. They make time-sensitive claims to increase urgency. Some use images of money or prizes and even pictures of past "winners", these are typical 'Phishing Scams'.`,
+      `Others use legal-sounding text to create the perception of a legitimate company. People are generally most vulnerable in situations such as a sudden loss of regular income or in the case of impending retirement. If you have been contacted by someone with a quick solution to your most critical financial situation and they require personal information or payments from you, it is advisable to stop immediately. If you've been a victim of any type of a scam, it doesn't mean that your funds are lost forever.`,
+    ],
+    iconPath: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z",
+    number: "07",
+  },
+];
 ---
 
-<Layout title="Common Scams — ScamHelp">
+<Layout title="Common Scams — ScamHelp" description="Learn about common scams including Forex fraud, binary options, cryptocurrency scams, fake exchanges, and more. Scam Help specializes in recovering assets lost to financial fraud.">
   <Navbar />
-  <main class="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
-    <div class="text-center">
-      <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;color:#9ACF84;">COMING SOON</span>
-      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:700;color:#ffffff;margin:16px 0 12px;">Common Scams</h1>
-      <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.4);margin-bottom:32px;">This page is under construction.</p>
-      <a href={import.meta.env.BASE_URL} style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;background:#9ACF84;color:#0a0a0f;padding:12px 28px;border-radius:10px;text-decoration:none;">← Back to Home</a>
-    </div>
+  <main class="bg-[#0a0a0f]">
+
+    <!-- Hero -->
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:10rem;padding-bottom:6rem;">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#9ACF84]/4 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="max-w-3xl mx-auto relative z-10">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Fraud Awareness</span>
+        <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.05">
+          Common <span class="text-[#9ACF84]">Scams</span>
+        </h1>
+        <p class="text-white/40 max-w-xl mx-auto reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.7">
+          Knowledge is your first line of defense. Learn about the most common types of fraud and how we can help you recover.
+        </p>
+
+        <!-- Scroll indicator -->
+        <div class="mt-12 reveal" style="transition-delay:0.5s">
+          <div class="w-px h-16 bg-gradient-to-b from-[#9ACF84]/50 to-transparent mx-auto animate-bounce-slow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam sections -->
+    {scams.map((scam, i) => {
+      const isEven = i % 2 === 0;
+      const bgClass = isEven ? "bg-[#0a0a0f]" : "bg-white";
+      return (
+        <section class={`scam-section py-16 md:py-24 px-6 ${bgClass} relative overflow-hidden`}>
+          {/* Decorative glow */}
+          <div class={`absolute ${isEven ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#9ACF84]/3 rounded-full blur-[180px] pointer-events-none`}></div>
+
+          <div class={`relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center`}>
+
+            {/* Text side */}
+            <div class={`reveal ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+              {/* Number badge */}
+              <div class="flex items-center gap-3 mb-6">
+                <span class="text-[#9ACF84]/20" style="font-family:'Montserrat',sans-serif;font-size:64px;font-weight:800;line-height:1">{scam.number}</span>
+                <div class="w-12 h-px bg-[#9ACF84]/30"></div>
+              </div>
+
+              <h2 class={`${isEven ? 'text-white' : 'text-[#0a0a0f]'} mb-6`} style="font-family:'Montserrat',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.1">
+                {scam.title} <span class="text-[#9ACF84]">{scam.highlight}</span>
+              </h2>
+
+              {scam.paragraphs.map((p) => (
+                <p class={`${isEven ? 'text-white/45' : 'text-[#0a0a0f]/60'} mb-4`} style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">{p}</p>
+              ))}
+
+              <div class="mt-8">
+                <a href={`${import.meta.env.BASE_URL}/contact-us`} class="scam-report-btn group inline-flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-full bg-[#9ACF84] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-4 h-4 text-[#0a0a0f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
+                  <span class={`${isEven ? 'text-white/60' : 'text-[#0a0a0f]/60'} group-hover:text-[#9ACF84] transition-colors`} style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">Report A Scam</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Image placeholder side */}
+            <div class={`reveal ${isEven ? 'lg:order-2 from-right' : 'lg:order-1 from-left'}`}>
+              <div class={`scam-image-card rounded-2xl border ${isEven ? 'border-white/5 bg-white/[0.02]' : 'border-[#e8e8e8] bg-[#f8f8f8]'} overflow-hidden relative`} style="height:380px;">
+                {/* Icon */}
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-24 h-24 rounded-3xl bg-[#9ACF84]/5 flex items-center justify-center">
+                    <svg class="w-12 h-12 text-[#9ACF84]/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d={scam.iconPath} />
+                    </svg>
+                  </div>
+                </div>
+                {/* Decorative corner accents */}
+                <div class={`absolute top-4 left-4 w-8 h-8 border-t border-l ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-tl-lg`}></div>
+                <div class={`absolute bottom-4 right-4 w-8 h-8 border-b border-r ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-br-lg`}></div>
+                {/* Placeholder text */}
+                <div class="absolute bottom-6 left-6">
+                  <span class={`${isEven ? 'text-white/10' : 'text-[#0a0a0f]/15'}`} style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase">Image placeholder</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- Our Mission (white bg) -->
+    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto text-center">
+        <div class="reveal">
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">What We Stand For</span>
+          <h2 class="text-[#0a0a0f] mb-3" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            Our <span class="text-[#9ACF84]">mission</span>
+          </h2>
+          <h3 class="text-[#0a0a0f] mb-8" style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:600">
+            Exercising your financial rights has never been so easy!
+          </h3>
+        </div>
+
+        <p class="text-[#0a0a0f]/60 mb-10 reveal" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+          We truly understand how stressful any financial loss is. This is especially true since the majority of consumers are not aware of their rights when it comes to any type of financial dispute. Credit or debit card chargeback, wire transfer recall, or other transaction dispute – let Scam Help take care of it! We will investigate your case in order to determine which national banking and consumer protection laws apply to make sure we do our best to put things right for you.
+        </p>
+
+        <div class="reveal">
+          <a href={`${import.meta.env.BASE_URL}/contact-us`} class="inline-flex items-center gap-2 px-6 py-3 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+            Contact Us
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <ConsultationSection />
+
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  /* Slow bounce for scroll indicator */
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 2.5s ease-in-out infinite;
+  }
+
+  /* Scam image card hover effect */
+  .scam-image-card {
+    transition: border-color 0.4s, transform 0.4s;
+  }
+  .scam-image-card:hover {
+    border-color: rgba(154,207,132,0.15);
+    transform: translateY(-4px);
+  }
+
+  /* Report button hover */
+  .scam-report-btn:hover span:first-child {
+    box-shadow: 0 0 20px rgba(154,207,132,0.3);
+  }
+</style>
