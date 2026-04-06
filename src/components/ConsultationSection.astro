@@ -14,12 +14,14 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 ---
 
 <section id="consultation" class="consultation-section relative py-16 md:py-20">
-  <!-- Video background -->
-  <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 z-[0] w-full h-full object-cover pointer-events-none">
-    <source src={`${import.meta.env.BASE_URL}/form_section_video.mp4`} type="video/mp4" />
-  </video>
+  <!-- Video background (clipped to section bounds) -->
+  <div class="absolute inset-0 z-[0] overflow-hidden pointer-events-none">
+    <video id="consultation-video" autoplay muted loop playsinline preload="metadata" class="consultation-video w-full h-full object-cover">
+      <source src={`${import.meta.env.BASE_URL}/form_section_video.mp4`} type="video/mp4" />
+    </video>
+  </div>
 
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
+  <div class="relative z-[1] w-full max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Left: info panel -->
@@ -49,10 +51,10 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 
       <!-- Right: Form -->
       <div>
-        <form id="consultation-form" data-lenis-prevent class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
+        <form id="consultation-form" class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
 
           <!-- Row 1: Name -->
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <input id="f-firstName" type="text" name="firstName" required class={inputClasses} style="font-size:13px" placeholder="First Name*" />
             <input id="f-lastName"  type="text" name="lastName"  required class={inputClasses} style="font-size:13px" placeholder="Last Name*" />
           </div>
@@ -61,7 +63,7 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
           <input id="f-email" type="email" name="email" required class={inputClasses} style="font-size:13px" placeholder="Email Address*" />
 
           <!-- Row 3: Phone + Country -->
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <input id="f-phone" type="tel" name="phone" required class={inputClasses} style="font-size:13px" placeholder="Phone Number*" />
             <!-- Country dropdown -->
             <div class="cselect" data-name="country">
@@ -79,7 +81,7 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
           </div>
 
           <!-- Row 4: Scam type + Amount -->
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <!-- Scam type dropdown -->
             <div class="cselect" data-name="scamType">
               <input type="hidden" name="scamType" class="cselect-value" />
@@ -138,22 +140,43 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
     const list    = sel.querySelector('.cselect-list')    as HTMLElement;
     const label   = sel.querySelector('.cselect-label')   as HTMLElement;
     const hidden  = sel.querySelector('.cselect-value')   as HTMLInputElement;
-    const arrow   = sel.querySelector('.cselect-arrow')   as HTMLElement;
 
-    list.addEventListener('wheel', (e) => {
-      if (!sel.classList.contains('open')) return;
+    // Wheel handler only attached when dropdown is open (avoids passive:false blocking scroll)
+    const wheelHandler = (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
       list.scrollTop += (e as WheelEvent).deltaY;
-    }, { passive: false });
+    };
+
+    function openDropdown() {
+      // Close all others first
+      document.querySelectorAll('.cselect.open').forEach((s) => {
+        if (s !== sel) closeDropdown(s as HTMLElement);
+      });
+      // Check if dropdown would overflow below viewport
+      const rect = trigger.getBoundingClientRect();
+      if (window.innerHeight - rect.bottom < 210) {
+        sel.classList.add('drop-up');
+      }
+      sel.classList.add('open');
+      list.addEventListener('wheel', wheelHandler, { passive: false });
+    }
+
+    function closeDropdown(target?: HTMLElement) {
+      const el = target || (sel as HTMLElement);
+      el.classList.remove('open', 'drop-up');
+      const elList = el.querySelector('.cselect-list') as HTMLElement;
+      if (elList) elList.removeEventListener('wheel', wheelHandler);
+    }
 
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = sel.classList.contains('open');
-      document.querySelectorAll('.cselect.open').forEach((s) => s.classList.remove('open'));
-      if (!isOpen) sel.classList.add('open');
+      if (sel.classList.contains('open')) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
     });
-
 
     sel.querySelectorAll('.cselect-option').forEach((opt) => {
       opt.addEventListener('click', () => {
@@ -163,19 +186,35 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
         label.style.color = 'rgba(255,255,255,0.85)';
         sel.querySelectorAll('.cselect-option').forEach((o) => o.classList.remove('active'));
         opt.classList.add('active');
-        sel.classList.remove('open');
+        closeDropdown();
       });
     });
   });
 
-  // Close on outside click — only if target is outside the dropdown
+  // Close on outside click
   document.addEventListener('click', (e) => {
     document.querySelectorAll('.cselect.open').forEach((s) => {
       if (!s.contains(e.target as Node)) {
-        s.classList.remove('open');
+        s.classList.remove('open', 'drop-up');
       }
     });
   });
+
+  // Pause video when section is not visible
+  const consultationVideo = document.getElementById('consultation-video') as HTMLVideoElement;
+  if (consultationVideo) {
+    const videoObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          consultationVideo.play();
+        } else {
+          consultationVideo.pause();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    videoObserver.observe(consultationVideo.closest('section')!);
+  }
 
   // Form submit
   document.getElementById('consultation-form')?.addEventListener('submit', (e) => {
@@ -194,21 +233,11 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 </script>
 
 <style>
-  /* Section overlay via pseudo-element — immune to child reveal transitions */
   .consultation-section {
     background: #0a0a0f;
-    overflow: hidden;
   }
-  .consultation-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgba(10,10,15,0.88);
-    pointer-events: none;
-  }
-  .consultation-section > .relative {
-    z-index: 2;
+  .consultation-video {
+    filter: brightness(0.12);
   }
 
   /* Custom select */
@@ -253,6 +282,7 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
     display: none;
     position: absolute;
     top: calc(100% + 6px);
+    bottom: auto;
     left: 0;
     right: 0;
     background: #1a1a28;
@@ -267,6 +297,10 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
   }
   .cselect.open .cselect-list {
     display: block;
+  }
+  .cselect.drop-up .cselect-list {
+    top: auto;
+    bottom: calc(100% + 6px);
   }
   .cselect-option {
     padding: 9px 12px;

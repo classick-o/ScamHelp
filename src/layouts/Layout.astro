@@ -184,8 +184,6 @@ const schemaOrg = {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
-    will-change: opacity, transform;
-    backface-visibility: hidden;
   }
   .reveal.from-left  { transform: translateX(-40px); }
   .reveal.from-right { transform: translateX(40px);  }
@@ -193,7 +191,6 @@ const schemaOrg = {
   .reveal.visible {
     opacity: 1;
     transform: translate(0) scale(1);
-    will-change: auto;
   }
 
   /* Staggered children */
