@@ -1,16 +1,187 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import ConsultationSection from '../components/ConsultationSection.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+const siteUrl = "https://classick-o.github.io/ScamHelp";
+
+const services = [
+  {
+    title: "Fund Recovery",
+    description: "Professional fund recovery services for victims of online fraud, bank scams, and unauthorized transactions. We work directly with banks and financial institutions to reclaim your lost money.",
+    href: `${base}/services/fund-recovery`,
+    iconPath: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Crypto Tracing",
+    description: "Advanced blockchain analytics to trace cryptocurrency transactions, identify wallet addresses, and track stolen digital assets across multiple chains and protocols.",
+    href: `${base}/services/crypto-tracing`,
+    iconPath: "M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z",
+  },
+  {
+    title: "Crypto Investigation",
+    description: "Expert cryptocurrency fraud investigation services using advanced forensic techniques to uncover fraudulent activities, recover assets, and support legal proceedings.",
+    href: `${base}/services/crypto-investigation`,
+    iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7",
+  },
+  {
+    title: "Dispute Resolution",
+    description: "Certified alternate dispute resolution services including expert mediation, negotiation support, and legal representation for victims of financial fraud.",
+    href: `${base}/services/dispute-resolution`,
+    iconPath: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+  },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Services" },
+  ],
+};
 ---
 
-<Layout title="Services — ScamHelp">
+<Layout
+  title="Our Services — ScamHelp | Fund Recovery & Crypto Forensics"
+  description="ScamHelp offers professional fund recovery, cryptocurrency tracing, blockchain investigation, and dispute resolution services. Expert team. Free consultation."
+  canonical={`${siteUrl}/services/`}
+>
   <Navbar />
-  <main class="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
-    <div class="text-center">
-      <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;color:#9ACF84;">COMING SOON</span>
-      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:700;color:#ffffff;margin:16px 0 12px;">Services</h1>
-      <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.4);margin-bottom:32px;">This page is under construction.</p>
-      <a href={import.meta.env.BASE_URL} style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;background:#9ACF84;color:#0a0a0f;padding:12px 28px;border-radius:10px;text-decoration:none;">← Back to Home</a>
-    </div>
+  <main class="bg-[#0a0a0f]">
+
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Breadcrumb -->
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-0" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-[12px]" style="font-family:'Inter',sans-serif">
+        <li><a href={base} class="text-white/30 hover:text-[#9ACF84] transition-colors">Home</a></li>
+        <li class="text-white/15">/</li>
+        <li class="text-[#9ACF84]/60">Services</li>
+      </ol>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:5rem;padding-bottom:5rem;">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#9ACF84]/4 rounded-full blur-[200px] pointer-events-none"></div>
+      <div class="max-w-3xl mx-auto relative z-10">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">What We Do</span>
+        <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1">
+          Our <span class="text-[#9ACF84]">Services</span>
+        </h1>
+        <p class="text-white/40 max-w-xl mx-auto reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.7">
+          From fund recovery to blockchain forensics, our expert team provides comprehensive services to help fraud victims reclaim their lost assets.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ─── SERVICES GRID ─── -->
+    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#9ACF84]/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6">
+          {services.map((s, i) => (
+            <a href={s.href} class={`service-link-card group reveal delay-${i + 1}`}>
+              <div class="flex items-start gap-5">
+                <div class="w-14 h-14 rounded-xl bg-[#9ACF84]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#9ACF84]/15 transition-colors">
+                  <svg class="w-7 h-7 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h2 class="text-[#0a0a0f] mb-2 group-hover:text-[#9ACF84] transition-colors" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:600">{s.title}</h2>
+                  <p class="text-[#0a0a0f]/50 mb-4" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
+                  <span class="inline-flex items-center gap-1.5 text-[#9ACF84] group-hover:gap-3 transition-all" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+                    Learn More
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── WHY SCAM HELP ─── -->
+    <section class="py-16 md:py-24 px-6 relative overflow-hidden">
+      <div class="absolute right-0 top-1/4 w-[400px] h-[400px] bg-[#9ACF84]/3 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center">
+        <div>
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Why Choose Us</span>
+          <h2 class="text-white mb-6 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            Why Choose <span class="text-[#9ACF84]">ScamHelp?</span>
+          </h2>
+        </div>
+        <p class="text-white/40 mb-12 reveal" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+          Scam Help leverages regulations and consumer rights for professional recovery services. Upon validating your request and confirming fraud, our team guides you through the refund process. Our global partners, comprising former law enforcement officers and banking specialists, bring unique anti-fraud solutions with the highest ethical standards.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#9ACF84]/15 transition-all duration-300 reveal delay-1">
+            <span class="block text-[#9ACF84] mb-1" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700">750+</span>
+            <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">Clients Helped</span>
+          </div>
+          <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#9ACF84]/15 transition-all duration-300 reveal delay-2">
+            <span class="block text-[#9ACF84] mb-1" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700">60+</span>
+            <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">Countries</span>
+          </div>
+          <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#9ACF84]/15 transition-all duration-300 reveal delay-3">
+            <span class="block text-[#9ACF84] mb-1" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700">24/7</span>
+            <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">Support</span>
+          </div>
+          <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#9ACF84]/15 transition-all duration-300 reveal delay-4">
+            <span class="block text-[#9ACF84] mb-1" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700">4</span>
+            <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">Core Services</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CTA ─── -->
+    <section class="py-16 md:py-20 px-6 bg-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-3xl mx-auto text-center">
+        <h2 class="text-[#0a0a0f] mb-6 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:600;line-height:1.2">
+          Ready to start your <span class="text-[#9ACF84]">recovery journey?</span>
+        </h2>
+        <p class="text-[#0a0a0f]/55 mb-8 reveal" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+          Contact us today for a free, confidential consultation. Our team will assess your case and advise on the best course of action for recovering your funds.
+        </p>
+        <div class="reveal">
+          <a href={`${base}/contact-us`} class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors btn-scale" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
+            Free Consultation
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <ConsultationSection />
   </main>
+  <Footer />
 </Layout>
+
+
+<style>
+  .service-link-card {
+    display: block;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: white;
+    text-decoration: none;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .service-link-card:hover {
+    border-color: rgba(154,207,132,0.3);
+    box-shadow: 0 15px 40px -10px rgba(154,207,132,0.12);
+    transform: translateY(-3px);
+  }
+</style>

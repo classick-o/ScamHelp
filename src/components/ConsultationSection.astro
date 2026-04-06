@@ -23,21 +23,21 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Left: info panel -->
-      <div class="reveal from-left">
-        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-3 block" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600">
+      <div>
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-3 block reveal" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600">
           Get Started
         </span>
-        <h2 class="text-white mb-3" style="font-family:'Montserrat',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:600;line-height:1.2">
+        <h2 class="text-white mb-3 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:600;line-height:1.2">
           Get a free consultation to see if you are{" "}
           <span class="text-[#9ACF84]">eligible for a refund</span>
         </h2>
-        <p class="text-white/40 mb-6" style="font-size:13px;line-height:1.7">
+        <p class="text-white/40 mb-6 reveal" style="font-size:13px;line-height:1.7">
           Fill out the form to get a free, confidential consultation with our recovery
           specialists. We'll assess your case and advise on the best course of action.
         </p>
         <div class="space-y-2.5">
           {benefits.map((item, i) => (
-            <div class={`reveal from-left delay-${i + 2} flex items-center gap-2.5`}>
+            <div class={`reveal delay-${Math.min(i + 1, 4)} flex items-center gap-2.5`}>
               <svg class="w-3.5 h-3.5 text-[#9ACF84] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -48,8 +48,8 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
       </div>
 
       <!-- Right: Form -->
-      <div class="reveal from-right delay-1">
-        <form id="consultation-form" class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
+      <div>
+        <form id="consultation-form" data-lenis-prevent class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
 
           <!-- Row 1: Name -->
           <div class="grid grid-cols-2 gap-3">
@@ -141,9 +141,10 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
     const arrow   = sel.querySelector('.cselect-arrow')   as HTMLElement;
 
     list.addEventListener('wheel', (e) => {
+      if (!sel.classList.contains('open')) return;
       e.preventDefault();
       e.stopPropagation();
-      list.scrollTop += e.deltaY;
+      list.scrollTop += (e as WheelEvent).deltaY;
     }, { passive: false });
 
     trigger.addEventListener('click', (e) => {

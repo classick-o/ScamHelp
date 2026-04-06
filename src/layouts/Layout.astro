@@ -117,6 +117,16 @@ const schemaOrg = {
 
     <!-- Global scroll reveal observer -->
     <script>
+      const reveals = document.querySelectorAll('.reveal');
+
+      // Instantly show elements already in viewport on page load (no animation flicker)
+      reveals.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('visible');
+        }
+      });
+
       const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -126,9 +136,13 @@ const schemaOrg = {
             }
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.08, rootMargin: '0px 0px 50px 0px' }
       );
-      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+      reveals.forEach((el) => {
+        if (!el.classList.contains('visible')) {
+          revealObserver.observe(el);
+        }
+      });
     </script>
 
     <script>
@@ -138,6 +152,7 @@ const schemaOrg = {
         duration: 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
+        autoToggle: false,
         prevent: (node: HTMLElement) => node.tagName === 'INPUT' || node.tagName === 'TEXTAREA' || node.tagName === 'SELECT',
       });
 
@@ -169,6 +184,8 @@ const schemaOrg = {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
   }
   .reveal.from-left  { transform: translateX(-40px); }
   .reveal.from-right { transform: translateX(40px);  }
@@ -176,6 +193,7 @@ const schemaOrg = {
   .reveal.visible {
     opacity: 1;
     transform: translate(0) scale(1);
+    will-change: auto;
   }
 
   /* Staggered children */

@@ -1,16 +1,328 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
+import ConsultationSection from '../../components/ConsultationSection.astro';
+import Footer from '../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+const siteUrl = "https://classick-o.github.io/ScamHelp";
+
+const services = [
+  {
+    title: "Case Assessment and Consultation",
+    description: "We begin with a thorough assessment of your case to understand the nature and scope of the dispute. Our experts provide a detailed consultation to outline the best course of action tailored to your specific situation.",
+    iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01",
+  },
+  {
+    title: "Evidence Collection and Analysis",
+    description: "Gathering and analyzing evidence is crucial in dispute resolution. Our team works diligently to collect all necessary documentation, communications, and other relevant evidence to build a strong case on your behalf.",
+    iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+  },
+  {
+    title: "Financial Recovery Assistance",
+    description: "Our services include comprehensive financial recovery assistance. We work with financial institutions, regulatory bodies, and other relevant entities to recover lost funds and secure financial restitution for our clients.",
+    iconPath: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Negotiation Support",
+    description: "We provide expert negotiation support to ensure that your interests are represented and protected. Our dispute resolution specialists strive to achieve the best possible outcome through strategic and persuasive communication.",
+    iconPath: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+  },
+  {
+    title: "Legal Representation",
+    description: "In cases where legal action is necessary, our experienced legal team will represent you throughout the process. We work with reputable attorneys who specialize in dispute resolution and scam recovery to ensure your case is handled with the utmost professionalism.",
+    iconPath: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+  },
+  {
+    title: "Mediation Services",
+    description: "Our professional mediators facilitate open and constructive dialogue between parties to reach a mutually agreeable solution. Mediation is a cost-effective and less adversarial alternative to litigation, aimed at resolving disputes amicably.",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+  },
+];
+
+const faqs = [
+  { question: "What are dispute resolution services?", answer: "Dispute resolution services are professional assistance services designed to help individuals and businesses resolve conflicts or disagreements. In the context of scam help, these services focus on addressing disputes between scam victims and the parties responsible for the scam or fraud." },
+  { question: "Are dispute resolution services guaranteed to recover my lost money?", answer: "While dispute resolution services strive to achieve the best possible outcome, they cannot guarantee the recovery of lost money. The success of the process depends on various factors, including the nature of the scam, the cooperation of the involved parties, and the availability of evidence." },
+  { question: "How much do dispute resolution services cost?", answer: "The cost of resolution services varies based on the complexity of the case, the duration of the process, and the specific service provider. Some organizations may offer free or low-cost services, while private firms and legal services may charge fees." },
+  { question: "How long does the dispute resolution process take?", answer: "The duration can vary widely. Some cases may be resolved within a few weeks, while more complex cases can take several months. The timeline depends on factors such as the responsiveness of the parties involved, the availability of evidence, and the negotiation process." },
+  { question: "Are alternative dispute resolution services confidential?", answer: "Yes, most alternative dispute resolution services maintain strict confidentiality to protect the privacy of all parties involved. The details of the case, discussions, and outcomes are typically kept confidential to encourage open and honest communication during the process." },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${siteUrl}/services/` },
+    { "@type": "ListItem", "position": 3, "name": "Dispute Resolution" },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+  })),
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Dispute Resolution Services",
+  "description": "Certified alternate dispute resolution services for victims of financial fraud. Expert mediation, negotiation, and legal representation.",
+  "url": `${siteUrl}/services/dispute-resolution/`,
+  "provider": { "@type": "Organization", "@id": `${siteUrl}/#organization`, "name": "ScamHelp" },
+  "areaServed": "Worldwide",
+  "serviceType": "Dispute Resolution",
+};
 ---
 
-<Layout title="Dispute Resolution — ScamHelp">
+<Layout
+  title="Dispute Resolution Services — ScamHelp | Expert Mediation & Recovery"
+  description="ScamHelp offers certified dispute resolution services including expert mediation, negotiation support, and legal representation for fraud victims. Free consultation."
+  canonical={`${siteUrl}/services/dispute-resolution/`}
+>
   <Navbar />
-  <main class="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
-    <div class="text-center">
-      <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;color:#9ACF84;">COMING SOON</span>
-      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:700;color:#ffffff;margin:16px 0 12px;">Dispute Resolution</h1>
-      <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.4);margin-bottom:32px;">This page is under construction.</p>
-      <a href={import.meta.env.BASE_URL} style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;background:#9ACF84;color:#0a0a0f;padding:12px 28px;border-radius:10px;text-decoration:none;">← Back to Home</a>
-    </div>
+  <main class="bg-[#0a0a0f]">
+
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+    <!-- Breadcrumb -->
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-0" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-[12px]" style="font-family:'Inter',sans-serif">
+        <li><a href={base} class="text-white/30 hover:text-[#9ACF84] transition-colors">Home</a></li>
+        <li class="text-white/15">/</li>
+        <li><a href={`${base}/services`} class="text-white/30 hover:text-[#9ACF84] transition-colors">Services</a></li>
+        <li class="text-white/15">/</li>
+        <li class="text-[#9ACF84]/60">Dispute Resolution</li>
+      </ol>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:5rem;padding-bottom:5rem;">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#9ACF84]/4 rounded-full blur-[200px] pointer-events-none"></div>
+      <div class="max-w-3xl mx-auto relative z-10">
+        <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Dispute Resolution</span>
+        <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1">
+          Certified Alternate <span class="text-[#9ACF84]">Dispute Resolution</span> Services
+        </h1>
+        <p class="text-white/40 max-w-xl mx-auto reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.7">
+          Expert mediation, negotiation, and legal representation to resolve financial disputes and recover your lost funds.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ─── SERVICES GRID ─── -->
+    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#9ACF84]/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">What To Expect</span>
+          <h2 class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            Our Financial <span class="text-[#9ACF84]">Dispute Resolution</span> Services
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, i) => (
+            <div class={`group p-7 rounded-2xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-lg transition-all duration-300 reveal delay-${Math.min(i + 1, 6)}`}>
+              <div class="w-12 h-12 rounded-xl bg-[#9ACF84]/10 flex items-center justify-center mb-4 group-hover:bg-[#9ACF84]/15 transition-colors">
+                <svg class="w-6 h-6 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
+                </svg>
+              </div>
+              <h3 class="text-[#0a0a0f] mb-2" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">{s.title}</h3>
+              <p class="text-[#0a0a0f]/50" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── ABOUT SECTION ─── -->
+    <section class="py-16 md:py-24 px-6 relative overflow-hidden">
+      <div class="absolute right-0 top-1/4 w-[400px] h-[400px] bg-[#9ACF84]/3 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">About Us</span>
+          <h2 class="text-white mb-6" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            About Scam <span class="text-[#9ACF84]">Help</span>
+          </h2>
+          <p class="text-white/45 mb-6" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+            ScamHelp is the leading dispute resolution company based in the Netherlands. We help secure your digital assets and uncover fraudulent activities. Our dedicated team of professional IT forensic analysts, anti-fraud specialists, and case coordinators have extensive knowledge and experience in handling online trading scams and other types of fraud.
+          </p>
+          <h3 class="text-white mb-4" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">Why wait? Secure your digital assets today!</h3>
+          <ul class="space-y-3 mb-6">
+            <li class="text-white/40" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-white font-semibold">Immediate Support:</span> Get in touch with our dispute resolution professionals who are ready to assist you right now.
+            </li>
+            <li class="text-white/40" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-white font-semibold">Learn More:</span> Dive into our detailed guide on how our dispute resolution services can protect and recover your digital assets.
+            </li>
+            <li class="text-white/40" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-white font-semibold">Request a Demo:</span> See our powerful tools in action and understand how they can be tailored to meet your specific needs.
+            </li>
+          </ul>
+          <p class="text-white/30 mb-6" style="font-family:'Inter',sans-serif;font-size:14px">Start Your Journey with our dispute resolution firm — Let Scam Help lead the way to a safe digital world.</p>
+          <a href={`${base}/about`} class="inline-flex items-center gap-2 px-6 py-3 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors btn-scale" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+            Learn More
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <!-- Image placeholder -->
+        <div class="reveal from-right">
+          <div class="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden relative flex items-center justify-center" style="height:380px;">
+            <span class="text-white/10 uppercase text-[11px] tracking-[0.1em]" style="font-family:'Montserrat',sans-serif;font-weight:600">Image Placeholder</span>
+            <div class="absolute top-4 left-4 w-8 h-8 border-t border-l border-[#9ACF84]/15 rounded-tl-lg"></div>
+            <div class="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-[#9ACF84]/15 rounded-br-lg"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── HOW DOES IT WORK ─── -->
+    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Image placeholder -->
+        <div class="reveal from-left">
+          <div class="rounded-2xl border border-[#e8e8e8] bg-[#f8f8f8] overflow-hidden relative flex items-center justify-center" style="height:380px;">
+            <span class="text-[#0a0a0f]/10 uppercase text-[11px] tracking-[0.1em]" style="font-family:'Montserrat',sans-serif;font-weight:600">Image Placeholder</span>
+            <div class="absolute top-4 left-4 w-8 h-8 border-t border-l border-[#9ACF84]/25 rounded-tl-lg"></div>
+            <div class="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-[#9ACF84]/25 rounded-br-lg"></div>
+          </div>
+        </div>
+        <!-- Text -->
+        <div>
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Our Process</span>
+          <h2 class="text-[#0a0a0f] mb-6" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            How Does Our <span class="text-[#9ACF84]">Dispute Resolution</span> Work?
+          </h2>
+          <p class="text-[#0a0a0f]/60 mb-6" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+            At Scam Help, our dispute resolution services begin with a thorough evaluation of your case. Our experienced team carefully examines all aspects of your situation, gathering necessary evidence and documentation to build a strong foundation for your claim.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="text-[#0a0a0f]/55" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-[#0a0a0f] font-semibold">Expertise:</span> Our dispute resolution experts comprise seasoned professionals with extensive experience in dispute and scam recovery.
+            </li>
+            <li class="text-[#0a0a0f]/55" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-[#0a0a0f] font-semibold">Comprehensive Services:</span> We offer a full spectrum of services to address every aspect of your dispute.
+            </li>
+            <li class="text-[#0a0a0f]/55" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-[#0a0a0f] font-semibold">Personalized Approach:</span> Each case is unique, and we tailor our strategies to meet your specific needs and circumstances.
+            </li>
+            <li class="text-[#0a0a0f]/55" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
+              <span class="text-[#0a0a0f] font-semibold">Client-Centered:</span> Your satisfaction and peace of mind are our top priorities. We are committed to achieving the best possible outcome for you.
+            </li>
+          </ul>
+          <a href="#consultation" class="inline-flex items-center gap-2 px-6 py-3 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors btn-scale" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+            Free Consultation
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CTA ─── -->
+    <section class="py-16 md:py-24 px-6 relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#9ACF84]/3 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-3xl mx-auto text-center">
+        <h2 class="text-white mb-6 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:600;line-height:1.2">
+          Don't let scammers get away with your <span class="text-[#9ACF84]">hard-earned money</span>
+        </h2>
+        <p class="text-white/40 mb-8 reveal" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8">
+          Contact Scam Help today to learn more about how our resolution services can assist you in recovering your losses and securing a brighter financial future. Our team is ready to stand by your side and fight for the justice you deserve.
+        </p>
+        <div class="reveal">
+          <a href={`${base}/contact-us`} class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#9ACF84] text-[#0a0a0f] rounded-xl hover:bg-[#8BC275] transition-colors btn-scale" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600">
+            Contact Us
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── FAQ ─── -->
+    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+      <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">FAQ</span>
+          <h2 class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:600;line-height:1.15">
+            Frequently Asked <span class="text-[#9ACF84]">Questions</span>
+          </h2>
+        </div>
+        <div class="space-y-2">
+          {faqs.map((faq, i) => (
+            <div class={`faq-item reveal delay-${Math.min(i + 1, 5)} border border-[#e8e8e8] rounded-2xl overflow-hidden transition-all duration-300`}>
+              <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-[#f8f8f8] transition-colors duration-200" type="button" aria-expanded="false">
+                <span class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;line-height:1.4">{faq.question}</span>
+                <span class="faq-icon flex-shrink-0 w-7 h-7 rounded-full bg-[#f0f0f0] flex items-center justify-center transition-all duration-300">
+                  <svg class="w-3.5 h-3.5 text-[#555] transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </button>
+              <div class="faq-body" style="max-height:0;overflow:hidden;transition:max-height 0.35s ease, padding 0.35s ease;">
+                <p class="px-6 pb-5 text-[#777]" style="font-size:14px;line-height:1.75">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <ConsultationSection />
   </main>
+  <Footer />
 </Layout>
+
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item   = trigger.closest('.faq-item') as HTMLElement;
+      const body   = item.querySelector('.faq-body')   as HTMLElement;
+      const icon   = item.querySelector('.faq-icon')   as HTMLElement;
+      const svg    = icon.querySelector('svg')          as SVGElement;
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) {
+          (other.querySelector('.faq-body') as HTMLElement).style.maxHeight = '0';
+          other.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+          (other.querySelector('.faq-icon') as HTMLElement).style.background = '#f0f0f0';
+          (other.querySelector('.faq-icon svg') as SVGElement)?.style.setProperty('transform', 'rotate(0deg)');
+          (other.querySelector('.faq-icon svg') as SVGElement)?.style.setProperty('color', '#555');
+          (other as HTMLElement).style.borderColor = '#e8e8e8';
+        }
+      });
+
+      if (isOpen) {
+        body.style.maxHeight = '0';
+        trigger.setAttribute('aria-expanded', 'false');
+        icon.style.background = '#f0f0f0';
+        svg.style.transform = 'rotate(0deg)';
+        svg.style.color = '#555';
+        item.style.borderColor = '#e8e8e8';
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        trigger.setAttribute('aria-expanded', 'true');
+        icon.style.background = '#9ACF84';
+        svg.style.transform = 'rotate(180deg)';
+        svg.style.color = '#0a0a0f';
+        item.style.borderColor = 'rgba(154,207,132,0.4)';
+      }
+    });
+  });
+</script>
