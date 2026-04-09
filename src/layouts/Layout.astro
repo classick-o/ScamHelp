@@ -12,7 +12,7 @@ const {
   title = "ScamHelp - Fund Recovery Experts | Get Back What Is Rightfully Yours",
   description = "ScamHelp helps victims of investment, crypto and romance scams recover their lost funds. Free confidential consultation. 750+ satisfied clients in 60+ countries. Netherlands-based fund recovery experts.",
   canonical = "https://classick-o.github.io/ScamHelp/",
-  ogImage = "https://classick-o.github.io/ScamHelp/og-image.jpg",
+  ogImage = "https://classick-o.github.io/ScamHelp/og-image.svg",
 } = Astro.props;
 
 const siteUrl = "https://classick-o.github.io/ScamHelp";
@@ -66,6 +66,35 @@ const schemaOrg = {
       "provider": { "@id": `${siteUrl}/#organization` },
       "description": "Advanced blockchain analytics to trace cryptocurrency transactions and identify fraudulent actors.",
       "areaServed": "Worldwide"
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#localbusiness`,
+      "name": "ScamHelp",
+      "description": "Fund recovery company specializing in helping victims of online fraud recover their lost assets.",
+      "url": siteUrl,
+      "telephone": "+31-70-701-3260",
+      "email": "support@scamhelp.net",
+      "image": `${siteUrl}/logo-full.svg`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kalvermarkt 53",
+        "addressLocality": "Den Haag",
+        "postalCode": "2511 CB",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "52.0784",
+        "longitude": "4.3185"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "priceRange": "$$"
     }
   ]
 };
@@ -104,6 +133,8 @@ const schemaOrg = {
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/logo_simple.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/logo_simple.svg`} />
 
     <!-- Fonts preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,16 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const siteUrl = "https://classick-o.github.io/ScamHelp";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "News" },
+  ],
+};
 ---
 
 <Layout title="News — ScamHelp">
   <Navbar />
-  <main class="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
-    <div class="text-center">
+  <main class="min-h-screen bg-[#0a0a0f] flex flex-col px-6">
+
+    <!-- Breadcrumb JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Breadcrumb -->
+    <nav class="max-w-7xl mx-auto w-full px-6 lg:px-8 pt-24 pb-0" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-[12px]" style="font-family:'Inter',sans-serif">
+        <li><a href={base} class="text-white/30 hover:text-[#9ACF84] transition-colors">Home</a></li>
+        <li class="text-white/15">/</li>
+        <li class="text-[#9ACF84]/60">News</li>
+      </ol>
+    </nav>
+
+    <div class="text-center flex-1 flex flex-col items-center justify-center">
       <span style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;color:#9ACF84;">COMING SOON</span>
       <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:700;color:#ffffff;margin:16px 0 12px;">News</h1>
       <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.4);margin-bottom:32px;">This page is under construction.</p>
-      <a href={import.meta.env.BASE_URL} style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;background:#9ACF84;color:#0a0a0f;padding:12px 28px;border-radius:10px;text-decoration:none;">← Back to Home</a>
+      <a href={base} style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;background:#9ACF84;color:#0a0a0f;padding:12px 28px;border-radius:10px;text-decoration:none;">← Back to Home</a>
     </div>
   </main>
 </Layout>
