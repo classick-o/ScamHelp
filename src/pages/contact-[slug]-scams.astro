@@ -67,16 +67,6 @@ const serviceSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
-    <!-- ─── Breadcrumb nav ─── -->
-    <nav class="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-0" aria-label="Breadcrumb">
-      <ol class="flex items-center gap-2 text-[12px]" style="font-family:'Inter',sans-serif">
-        <li><a href={base} class="text-white/30 hover:text-[#9ACF84] transition-colors">Home</a></li>
-        <li class="text-white/15">/</li>
-        <li><a href={`${base}/scams`} class="text-white/30 hover:text-[#9ACF84] transition-colors">Common Scams</a></li>
-        <li class="text-white/15">/</li>
-        <li class="text-[#9ACF84]/60">{scam.scamType} Scam Recovery</li>
-      </ol>
-    </nav>
 
 
     <!-- ─── HERO ─── -->
