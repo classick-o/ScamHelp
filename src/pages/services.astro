@@ -56,9 +56,11 @@ const breadcrumbSchema = {
 
 
     <!-- ─── HERO ─── -->
-    <section class="px-6 text-center relative overflow-hidden" style="padding-top:5rem;padding-bottom:5rem;">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#9ACF84]/4 rounded-full blur-[200px] pointer-events-none"></div>
-      <div class="max-w-3xl mx-auto relative z-10">
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:8rem;padding-bottom:12rem;">
+      <div class="absolute inset-0 z-[0] overflow-hidden pointer-events-none">
+        <img src={`${base}/services_hero.webp`} alt="" class="w-full h-full object-cover" style="filter:brightness(0.12)" loading="eager" />
+      </div>
+      <div class="max-w-3xl mx-auto relative z-[1]">
         <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">What We Do</span>
         <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1">
           Our <span class="text-[#9ACF84]">Services</span>

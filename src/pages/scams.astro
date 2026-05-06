@@ -21,6 +21,7 @@ const scams = [
     title: "Forex",
     highlight: "scams",
     slug: "forex",
+    image: "scam-images/forex_scams_image.webp",
     paragraphs: [
       "The forex market (FX) is the world's largest trading market. Nearly $5 trillion are traded daily. The market opens 24 hours a day. When trading closes in New York it starts again in Tokyo and Hong Kong. Since there are constant price fluctuations, this market can make institutions, companies and individuals a lot of money.",
       "Forex fraud is a growing problem and there is no guaranteed way to avoid it. People under 25 are falling in droves due to the lavish payouts promised. Until recently, older people (those over 50 and in retirement) were considered to be the most vulnerable target. All that, is apparently a trend in the past. Those who currently make up the over 55 age group category have grown somewhat immune to the tricks of the online scammers, the young adult category has become the preferred target now.",
@@ -32,6 +33,7 @@ const scams = [
     title: "Binary option",
     highlight: "scams",
     slug: "binary-option",
+    image: "scam-images/binary_options_scam_image.webp",
     paragraphs: [
       "Scams are extremely common in the field of binary options. When new financial instruments or forms of trading emerge, a whole range of businesses tend to get involved and some of those product providers are more trustworthy than others. This is certainly true of binary options, these platforms tend to operate under the radar.",
       "A binary option is a type of options contract where the payout depends entirely on the outcome of a yes/no proposition, typically related to the price of a particular asset such as a stock or a commodity. With binary options you don't actually buy stock or commodities you just bet on its price within a certain time period. Some binary options are listed on registered exchanges or traded on a designated contract market and are subject to oversight by U.S. regulators such as the Commodity Futures Trading Commission (CFTC), however a large part of the binary options market operates through websites that don't comply with U.S. regulations or any Financial Regulatory Authorities.",
@@ -43,6 +45,7 @@ const scams = [
     title: "Cryptocurrency",
     highlight: "scams",
     slug: "cryptocurrency",
+    image: "scam-images/crypto_scam_image.webp",
     paragraphs: [
       "Cryptocurrency market significantly grew within past 10 years and there is a high probability of making a big profit investing in virtual money. Scams and fraudulent schemes are everywhere online so the prospect of making 'quick money' can blind most people even though there is much higher risk involved into crypto transactions.",
       "Complex blockchain technology crypto companies are using is considered safe, however scammers find ways to take advantage of naive investors breaking into users' digital wallets. Keeping in mind the fact that people usually buy cryptocurrencies using credit cards, wire transfer or other types of payments there is bank liability taking place. Thus there is a legitimate solution to get your money back.",
@@ -54,6 +57,7 @@ const scams = [
     title: "Online casino",
     highlight: "scams",
     slug: "online-casino",
+    image: "scam-images/casino_scams_image.webp",
     paragraphs: [
       "The global online gambling market today is worth around 60 billion USD and keeps growing exponentially. Being a part of an online gambling community is quite risky by itself since virtual poker, casinos and sports betting websites use various fraudulent moves to decrease your chances to win. Online casinos, slot machines and so on are not designed to help you earning money, they do care only about generating as much revenue as possible on their end. Even though a large number of casinos are fully licensed and legitimate, there are a lot of shady players who ridiculously over-charge for the withdrawal or freeze players' accounts once they try to pull their money out. There are multiple ways for cybercriminals and fraudsters to game the system from using bonus abuse techniques to steal your credit card details.",
     ],
@@ -64,6 +68,7 @@ const scams = [
     title: "Fake exchange",
     highlight: "scams",
     slug: "fake-exchange",
+    image: "scam-images/exchange_scams_image.webp",
     paragraphs: [
       "The cryptocurrency market has seen tremendous growth over the past decade, attracting investors with the potential for significant profits. Unfortunately, this rapid rise has also led to an increase in scams and fraudulent schemes, especially through fake cryptocurrency exchanges. These scams prey on the desire to make quick profits, often blinding people to the high risks involved.",
       "Fake exchanges imitate real platforms, tricking investors into trusting them. After funds are deposited, scammers can vanish, leaving wallets empty. Although blockchain is secure, scammers use clever tactics to exploit newcomers. Many fund these fake accounts via credit cards or bank transfers, making it possible to recover lost funds through financial institutions. If you've fallen victim to a fake exchange, there are legitimate ways to pursue recovery.",
@@ -75,6 +80,7 @@ const scams = [
     title: "Investment",
     highlight: "scams",
     slug: "investment",
+    image: "scam-images/investment_scam_image.webp",
     paragraphs: [
       `The global investment market has grown massively, attracting people seeking high returns. However, the promise of quick profits makes investment schemes risky, as many fraudulent "investment opportunities" are designed to deceive. Fake investment platforms often use unrealistic promises of guaranteed returns to lure in unsuspecting investors, only to disappear with their money. While some investment firms are legitimate, there are many scammers who charge excessive fees, delay withdrawals, or freeze accounts when investors try to cash out. Cybercriminals use various tactics, from manipulating returns to phishing for personal information, to exploit those looking to grow their wealth.`,
     ],
@@ -85,6 +91,7 @@ const scams = [
     title: "Other",
     highlight: "scams",
     slug: null,
+    image: "scam-images/other_scams_image.webp",
     paragraphs: [
       `Unwanted emails and messages bombard us on a regular basis. Many people ignore, delete or toss junk mail in the rubbish knowing that these messages are most likely mass-market scams. Scammers will often use persuasion techniques such as pretending to be a legitimate business and using local area codes to build trust and familiarity. They make time-sensitive claims to increase urgency. Some use images of money or prizes and even pictures of past "winners", these are typical 'Phishing Scams'.`,
       `Others use legal-sounding text to create the perception of a legitimate company. People are generally most vulnerable in situations such as a sudden loss of regular income or in the case of impending retirement. If you have been contacted by someone with a quick solution to your most critical financial situation and they require personal information or payments from you, it is advisable to stop immediately. If you've been a victim of any type of a scam, it doesn't mean that your funds are lost forever.`,
@@ -104,21 +111,18 @@ const scams = [
 
 
     <!-- Hero -->
-    <section class="px-6 text-center relative overflow-hidden" style="padding-top:5rem;padding-bottom:6rem;">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#9ACF84]/4 rounded-full blur-[180px] pointer-events-none"></div>
-      <div class="max-w-3xl mx-auto relative z-10">
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:8rem;padding-bottom:12rem;">
+      <div class="absolute inset-0 z-[0] overflow-hidden pointer-events-none">
+        <img src={`${base}/common-scams-hero.webp`} alt="" class="w-full h-full object-cover" style="filter:brightness(0.12)" loading="eager" />
+      </div>
+      <div class="max-w-3xl mx-auto relative z-[1]">
         <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Fraud Awareness</span>
-        <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.05">
+        <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1">
           Common <span class="text-[#9ACF84]">Scams</span>
         </h1>
         <p class="text-white/40 max-w-xl mx-auto reveal" style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.7">
           Knowledge is your first line of defense. Learn about the most common types of fraud and how we can help you recover.
         </p>
-
-        <!-- Scroll indicator -->
-        <div class="mt-12 reveal" style="transition-delay:0.5s">
-          <div class="w-px h-16 bg-gradient-to-b from-[#9ACF84]/50 to-transparent mx-auto animate-bounce-slow"></div>
-        </div>
       </div>
     </section>
 
@@ -159,24 +163,27 @@ const scams = [
               </div>
             </div>
 
-            {/* Image placeholder side */}
+            {/* Image side */}
             <div class={`reveal ${isEven ? 'lg:order-2 from-right' : 'lg:order-1 from-left'}`}>
               <div class={`scam-image-card rounded-2xl border ${isEven ? 'border-white/5 bg-white/[0.02]' : 'border-[#e8e8e8] bg-[#f8f8f8]'} overflow-hidden relative`} style="height:380px;">
-                {/* Icon */}
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-24 h-24 rounded-3xl bg-[#9ACF84]/5 flex items-center justify-center">
-                    <svg class="w-12 h-12 text-[#9ACF84]/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d={scam.iconPath} />
-                    </svg>
-                  </div>
-                </div>
-                {/* Decorative corner accents */}
-                <div class={`absolute top-4 left-4 w-8 h-8 border-t border-l ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-tl-lg`}></div>
-                <div class={`absolute bottom-4 right-4 w-8 h-8 border-b border-r ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-br-lg`}></div>
-                {/* Placeholder text */}
-                <div class="absolute bottom-6 left-6">
-                  <span class={`${isEven ? 'text-white/10' : 'text-[#0a0a0f]/15'}`} style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase">Image placeholder</span>
-                </div>
+                {scam.image ? (
+                  <img src={`${import.meta.env.BASE_URL}/${scam.image}`} alt={`${scam.title} ${scam.highlight}`} class="w-full h-full object-cover" loading="lazy" />
+                ) : (
+                  <>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="w-24 h-24 rounded-3xl bg-[#9ACF84]/5 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-[#9ACF84]/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d={scam.iconPath} />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class={`absolute top-4 left-4 w-8 h-8 border-t border-l ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-tl-lg`}></div>
+                    <div class={`absolute bottom-4 right-4 w-8 h-8 border-b border-r ${isEven ? 'border-[#9ACF84]/15' : 'border-[#9ACF84]/25'} rounded-br-lg`}></div>
+                    <div class="absolute bottom-6 left-6">
+                      <span class={`${isEven ? 'text-white/10' : 'text-[#0a0a0f]/15'}`} style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase">Image placeholder</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 

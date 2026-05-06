@@ -65,8 +65,11 @@ const faqs = [
 
 
     <!-- Hero -->
-    <section class="px-6 text-center" style="padding-top:5rem;padding-bottom:5rem;">
-      <div class="max-w-3xl mx-auto">
+    <section class="px-6 text-center relative overflow-hidden" style="padding-top:8rem;padding-bottom:12rem;">
+      <div class="absolute inset-0 z-[0] overflow-hidden pointer-events-none">
+        <img src={`${base}/rights_page_hero.webp`} alt="" class="w-full h-full object-cover" style="filter:brightness(0.12)" loading="eager" />
+      </div>
+      <div class="max-w-3xl mx-auto relative z-[1]">
         <span class="text-[#9ACF84] uppercase tracking-[0.2em] mb-5 block reveal" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600">Fraud Recovery</span>
         <h1 class="text-white mb-5 reveal" style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1">
           Know your <span class="text-[#9ACF84]">rights</span>

@@ -10,7 +10,7 @@ const countries   = ["Netherlands","United Kingdom","United States","Germany","F
 const scamTypes   = ["Investment Scam","Loan Scam","Romance Scam","Cryptocurrency Scam","Forex Trading Scam","Binary Options Scam","Other"];
 const amounts     = ["Below 5,000 EUR","5,000–10,000 EUR","10,000–30,000 EUR","Above 30,000 EUR"];
 
-const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounded-xl text-white placeholder-white/25 focus:border-[#9ACF84]/50 focus:outline-none focus:ring-1 focus:ring-[#9ACF84]/20 transition-all duration-200";
+const inputClasses = "w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder-white/30 focus:border-[#9ACF84]/50 focus:bg-white/[0.06] focus:outline-none focus:ring-1 focus:ring-[#9ACF84]/20 transition-all duration-200 backdrop-blur-sm";
 ---
 
 <section id="consultation" class="consultation-section relative py-16 md:py-20">
@@ -51,7 +51,7 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
 
       <!-- Right: Form -->
       <div>
-        <form id="consultation-form" class="p-6 md:p-8 rounded-xl bg-[#111119] border border-white/[0.06] space-y-3">
+        <form id="consultation-form" class="consultation-form-glass p-6 md:p-8 rounded-xl border border-white/[0.08] space-y-3">
 
           <!-- Row 1: Name -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -239,6 +239,12 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
   .consultation-video {
     filter: brightness(0.12);
   }
+  .consultation-form-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
 
   /* Custom select */
   .cselect {
@@ -251,12 +257,17 @@ const inputClasses = "w-full px-4 py-3 bg-[#13131d] border border-white/8 rounde
     justify-content: space-between;
     gap: 8px;
     padding: 12px 16px;
-    background: #13131d;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     cursor: pointer;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
     text-align: left;
+  }
+  .cselect-trigger:hover {
+    background: rgba(255,255,255,0.06);
   }
   .cselect-trigger:hover,
   .cselect.open .cselect-trigger {
