@@ -28,7 +28,7 @@ const reasons = [
 ];
 ---
 
-<section class="py-16 md:py-20 relative overflow-hidden">
+<section class="py-12 md:py-14 relative overflow-hidden">
   <!-- Video background -->
   <video
     class="absolute inset-0 w-full h-full object-cover"
@@ -61,11 +61,11 @@ const reasons = [
     <!-- Cards grid -->
     <div class="grid md:grid-cols-2 gap-4">
       {reasons.map((reason, i) => (
-        <div class={`reveal delay-${i + 1} group p-4 md:p-7 rounded-xl border border-white/5 bg-white/[0.04] backdrop-blur-md hover:bg-white/[0.07] hover:border-[#9ACF84]/15 transition-all duration-300 relative overflow-hidden`}>
-          <div class="absolute inset-0 bg-gradient-to-br from-[#9ACF84]/0 to-[#9ACF84]/0 group-hover:from-[#9ACF84]/3 group-hover:to-transparent transition-all duration-300 pointer-events-none"></div>
+        <div class={`reveal delay-${i + 1} why-card group p-4 md:p-7 rounded-xl border border-white/5 bg-white/[0.04] backdrop-blur-md relative overflow-hidden`}>
+          <div class="why-card-overlay absolute inset-0 bg-gradient-to-br from-[#9ACF84]/0 to-[#9ACF84]/0 pointer-events-none"></div>
           <div class="relative z-10">
             <div class="flex items-center gap-4 mb-3">
-              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center group-hover:bg-[#9ACF84]/12 transition-colors duration-200">
+              <div class="why-card-icon flex-shrink-0 w-12 h-12 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center">
                 <svg class="w-5 h-5 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d={reason.iconPath} />
                 </svg>
@@ -106,6 +106,25 @@ const reasons = [
     </div>
   </div>
 </section>
+
+<style>
+  .why-card,
+  .why-card-overlay,
+  .why-card-icon {
+    transition: background-color 1s ease-out, border-color 1s ease-out, background-image 1s ease-out, transform 1s ease-out;
+  }
+  .why-card:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(154, 207, 132, 0.15);
+    transform: translateY(-3px);
+  }
+  .why-card:hover .why-card-overlay {
+    background-image: linear-gradient(to bottom right, rgba(154, 207, 132, 0.05), transparent);
+  }
+  .why-card:hover .why-card-icon {
+    background-color: rgba(154, 207, 132, 0.18);
+  }
+</style>
 
 <script>
   const box  = document.getElementById('why-cta-box');

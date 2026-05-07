@@ -131,11 +131,11 @@ const scams = [
       const isEven = i % 2 === 0;
       const bgClass = isEven ? "bg-[#0a0a0f]" : "bg-white";
       return (
-        <section class={`scam-section py-16 md:py-24 px-6 ${bgClass} relative overflow-hidden`}>
+        <section class={`scam-section py-12 md:py-16 px-6 ${bgClass} relative overflow-hidden`}>
           {/* Decorative glow */}
           <div class={`absolute ${isEven ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#9ACF84]/3 rounded-full blur-[180px] pointer-events-none`}></div>
 
-          <div class={`relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center`}>
+          <div class={`relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center`}>
 
             {/* Text side */}
             <div class={`reveal ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
@@ -193,7 +193,7 @@ const scams = [
     })}
 
     <!-- Our Mission (white bg) -->
-    <section class="py-16 md:py-24 px-6 bg-white relative overflow-hidden">
+    <section class="py-12 md:py-16 px-6 bg-white relative overflow-hidden">
       <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
 
       <div class="relative z-10 max-w-4xl mx-auto text-center">

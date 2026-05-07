@@ -184,7 +184,7 @@ const schemaOrg = {
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         autoToggle: false,
-        prevent: (node: HTMLElement) => node.tagName === 'INPUT' || node.tagName === 'TEXTAREA' || node.tagName === 'SELECT',
+        prevent: (node: HTMLElement) => node.tagName === 'TEXTAREA',
       });
 
       function raf(time: number) {
