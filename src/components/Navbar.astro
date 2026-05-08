@@ -130,6 +130,9 @@ const navLinks = [
   </div>
 </nav>
 
+<!-- Mobile menu backdrop overlay -->
+<div id="mobile-menu-overlay" class="lg:hidden fixed inset-0 z-40 bg-black/65 opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+
 <!-- Navbar entry animation -->
 <style>
   #navbar {
@@ -138,6 +141,10 @@ const navLinks = [
   @keyframes nav-enter {
     from { transform: translateY(-100%); opacity: 0; }
     to   { transform: translateY(0);     opacity: 1; }
+  }
+  #mobile-menu-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
   }
 </style>
 
@@ -157,26 +164,31 @@ const navLinks = [
   const menu      = document.getElementById('mobile-menu');
   const iconMenu  = document.getElementById('icon-menu');
   const iconClose = document.getElementById('icon-close');
+  const overlay   = document.getElementById('mobile-menu-overlay');
+
+  function closeMenu() {
+    menu?.classList.remove('open');
+    iconMenu?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+    overlay?.classList.remove('visible');
+  }
+
+  function openMenu() {
+    menu?.classList.add('open');
+    iconMenu?.classList.add('hidden');
+    iconClose?.classList.remove('hidden');
+    overlay?.classList.add('visible');
+  }
 
   toggle?.addEventListener('click', () => {
     const isOpen = menu?.classList.contains('open');
-    if (isOpen) {
-      menu?.classList.remove('open');
-      iconMenu?.classList.remove('hidden');
-      iconClose?.classList.add('hidden');
-    } else {
-      menu?.classList.add('open');
-      iconMenu?.classList.add('hidden');
-      iconClose?.classList.remove('hidden');
-    }
+    if (isOpen) closeMenu(); else openMenu();
   });
+
+  overlay?.addEventListener('click', closeMenu);
 
   // Close mobile menu on link click
   document.querySelectorAll('.mobile-link').forEach((link) => {
-    link.addEventListener('click', () => {
-      menu?.classList.remove('open');
-      iconMenu?.classList.remove('hidden');
-      iconClose?.classList.add('hidden');
-    });
+    link.addEventListener('click', closeMenu);
   });
 </script>
