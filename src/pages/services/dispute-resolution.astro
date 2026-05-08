@@ -31,7 +31,7 @@ const services = [
   {
     title: "Legal Representation",
     description: "In cases where legal action is necessary, our experienced legal team will represent you throughout the process. We work with reputable attorneys who specialize in dispute resolution and scam recovery to ensure your case is handled with the utmost professionalism.",
-    iconPath: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+    iconPath: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
   },
   {
     title: "Mediation Services",
@@ -120,14 +120,16 @@ const serviceSchema = {
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
-            <div class={`group p-7 rounded-2xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-lg transition-all duration-300 reveal delay-${Math.min(i + 1, 6)}`}>
-              <div class="w-12 h-12 rounded-xl bg-[#9ACF84]/10 flex items-center justify-center mb-4 group-hover:bg-[#9ACF84]/15 transition-colors">
-                <svg class="w-6 h-6 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
-                </svg>
+            <div class={`card-expandable group p-7 rounded-2xl border border-[#e8e8e8] bg-white hover:border-[#9ACF84]/30 hover:shadow-lg transition-all duration-300 reveal delay-${Math.min(i + 1, 6)}`}>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center">
+                  <svg class="w-5 h-5 text-[#0a0a0f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
+                  </svg>
+                </div>
+                <h3 class="text-[#0a0a0f]" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">{s.title}</h3>
               </div>
-              <h3 class="text-[#0a0a0f] mb-2" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">{s.title}</h3>
-              <p class="text-[#0a0a0f]/50" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
+              <p class="card-desc text-[#0a0a0f]/50" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
             </div>
           ))}
         </div>
@@ -165,13 +167,9 @@ const serviceSchema = {
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
-        <!-- Image placeholder -->
-        <div class="reveal from-right">
-          <div class="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden relative flex items-center justify-center" style="height:380px;">
-            <span class="text-white/10 uppercase text-[11px] tracking-[0.1em]" style="font-family:'Montserrat',sans-serif;font-weight:600">Image Placeholder</span>
-            <div class="absolute top-4 left-4 w-8 h-8 border-t border-l border-[#9ACF84]/15 rounded-tl-lg"></div>
-            <div class="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-[#9ACF84]/15 rounded-br-lg"></div>
-          </div>
+        <!-- Image -->
+        <div class="reveal from-right rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden" style="aspect-ratio: 1200 / 792;">
+          <img src={`${base}/who_we_are_image.webp`} alt="ScamHelp dispute resolution experts" class="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
     </section>
@@ -181,13 +179,9 @@ const serviceSchema = {
     <section class="py-12 md:py-16 px-6 bg-white relative overflow-hidden">
       <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#9ACF84]/5 rounded-full blur-[160px] pointer-events-none"></div>
       <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-        <!-- Image placeholder -->
-        <div class="reveal from-left">
-          <div class="rounded-2xl border border-[#e8e8e8] bg-[#f8f8f8] overflow-hidden relative flex items-center justify-center" style="height:380px;">
-            <span class="text-[#0a0a0f]/10 uppercase text-[11px] tracking-[0.1em]" style="font-family:'Montserrat',sans-serif;font-weight:600">Image Placeholder</span>
-            <div class="absolute top-4 left-4 w-8 h-8 border-t border-l border-[#9ACF84]/25 rounded-tl-lg"></div>
-            <div class="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-[#9ACF84]/25 rounded-br-lg"></div>
-          </div>
+        <!-- Image -->
+        <div class="reveal from-left rounded-2xl border border-[#e8e8e8] bg-[#f8f8f8] overflow-hidden" style="aspect-ratio: 1200 / 788;">
+          <img src={`${base}/why_us_image.webp`} alt="How dispute resolution works at ScamHelp" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <!-- Text -->
         <div>

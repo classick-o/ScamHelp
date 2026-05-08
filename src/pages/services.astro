@@ -30,7 +30,7 @@ const services = [
     title: "Dispute Resolution",
     description: "Certified alternate dispute resolution services including expert mediation, negotiation support, and legal representation for victims of financial fraud.",
     href: `${base}/services/dispute-resolution`,
-    iconPath: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+    iconPath: "M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z",
   },
 ];
 
@@ -78,22 +78,18 @@ const breadcrumbSchema = {
       <div class="relative z-10 max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-6">
           {services.map((s, i) => (
-            <a href={s.href} class={`service-link-card group reveal delay-${i + 1}`}>
-              <div class="flex items-start gap-5">
-                <div class="w-14 h-14 rounded-xl bg-[#9ACF84]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#9ACF84]/15 transition-colors">
-                  <svg class="w-7 h-7 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <h2 class="text-[#0a0a0f] mb-2 group-hover:text-[#9ACF84] transition-colors" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:600">{s.title}</h2>
-                  <p class="text-[#0a0a0f]/50 mb-4" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
-                  <span class="inline-flex items-center gap-1.5 text-[#9ACF84] group-hover:gap-3 transition-all" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
-                    Learn More
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                  </span>
-                </div>
+            <a href={s.href} class={`service-link-card service-link-card-grid group reveal delay-${i + 1}`}>
+              <div class="svc-icon w-14 h-14 rounded-xl bg-[#9ACF84]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#9ACF84]/15 transition-colors">
+                <svg class="w-7 h-7 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={s.iconPath} />
+                </svg>
               </div>
+              <h2 class="svc-title text-[#0a0a0f] group-hover:text-[#9ACF84] transition-colors" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:600">{s.title}</h2>
+              <p class="svc-desc text-[#0a0a0f]/50" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{s.description}</p>
+              <span class="svc-link inline-flex items-center gap-1.5 text-[#9ACF84] group-hover:gap-3 transition-all" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600">
+                Learn More
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </span>
             </a>
           ))}
         </div>
@@ -115,7 +111,7 @@ const breadcrumbSchema = {
           Scam Help leverages regulations and consumer rights for professional recovery services. Upon validating your request and confirming fraud, our team guides you through the refund process. Our global partners, comprising former law enforcement officers and banking specialists, bring unique anti-fraud solutions with the highest ethical standards.
         </p>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           <div class="p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#9ACF84]/15 transition-all duration-300 reveal delay-1">
             <span class="block text-[#9ACF84] mb-1" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700">750+</span>
             <span class="text-white/30" style="font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">Clients Helped</span>
@@ -166,16 +162,48 @@ const breadcrumbSchema = {
 <style>
   .service-link-card {
     display: block;
-    padding: 2rem;
+    padding: 14px;
     border-radius: 1rem;
     border: 1px solid rgba(0,0,0,0.06);
     background: white;
     text-decoration: none;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   }
+  @media (min-width: 640px) {
+    .service-link-card {
+      padding: 2rem;
+    }
+  }
   .service-link-card:hover {
     border-color: rgba(154,207,132,0.3);
     box-shadow: 0 15px 40px -10px rgba(154,207,132,0.12);
     transform: translateY(-3px);
+  }
+
+  /* Grid layout: mobile shows icon+title in row, desc below; desktop shows icon left + content right */
+  .service-link-card-grid {
+    display: grid;
+    gap: 0.75rem 0.75rem;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "icon title"
+      "desc desc"
+      "link link";
+  }
+  .service-link-card-grid .svc-icon { grid-area: icon; align-self: center; }
+  .service-link-card-grid .svc-title { grid-area: title; align-self: center; margin: 0; }
+  .service-link-card-grid .svc-desc { grid-area: desc; }
+  .service-link-card-grid .svc-link { grid-area: link; }
+
+  @media (min-width: 640px) {
+    .service-link-card-grid {
+      gap: 0.5rem 1.25rem;
+      grid-template-areas:
+        "icon title"
+        "icon desc"
+        "icon link";
+    }
+    .service-link-card-grid .svc-icon { align-self: start; }
+    .service-link-card-grid .svc-title { align-self: end; margin-bottom: 0.25rem; }
   }
 </style>

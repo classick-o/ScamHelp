@@ -60,7 +60,7 @@ const whyHelpCards = [
   {
     title: "One Chance to Dispute",
     description: "Banking rules provide consumers with only one shot to raise a dispute against the fraudulent merchant, therefore the dispute has to be well formulated in aligned with the local and international law.",
-    icon: `<svg class="w-6 h-6 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1.5V12a9 9 0 006 8.5A9 9 0 0021 12V7.5L18 6"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m0 12v3M7.5 7.5L12 12l4.5-4.5"/><circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    icon: `<svg class="w-6 h-6 text-[#9ACF84]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
   },
   {
     title: "Solid Arguments Required",
@@ -184,12 +184,14 @@ const breadcrumbSchema = {
 
         <div class="grid md:grid-cols-3 gap-5">
           {whyHelpCards.map((card, i) => (
-            <div class={`reveal delay-${i + 1} group p-6 rounded-xl border border-white/5 bg-white/[0.04] backdrop-blur-md hover:bg-white/[0.07] hover:border-[#9ACF84]/15 transition-all duration-300`}>
-              <div class="w-14 h-14 rounded-xl bg-[#9ACF84]/8 flex items-center justify-center mb-5">
-                <Fragment set:html={card.icon} />
+            <div class={`card-expandable reveal delay-${i + 1} group p-6 rounded-xl border border-white/5 bg-white/[0.04] backdrop-blur-md hover:bg-white/[0.07] hover:border-[#9ACF84]/15 transition-all duration-300`}>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-[#9ACF84] flex items-center justify-center why-help-icon">
+                  <Fragment set:html={card.icon} />
+                </div>
+                <h3 class="text-white" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600">{card.title}</h3>
               </div>
-              <h3 class="text-white mb-3" style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:600">{card.title}</h3>
-              <p class="text-white/40" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{card.description}</p>
+              <p class="card-desc text-white/40" style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.75">{card.description}</p>
             </div>
           ))}
         </div>
@@ -202,3 +204,11 @@ const breadcrumbSchema = {
   </main>
   <Footer />
 </Layout>
+
+<style is:global>
+  .why-help-icon svg {
+    color: #0a0a0f !important;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+</style>
